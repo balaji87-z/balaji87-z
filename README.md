@@ -75,9 +75,10 @@ Collection of command-line utilities focused on:
 
 ---
 
-# 📊 SYSTEM METRICS
+## 📅 Contribution Calendar
+
 <p align="center">
-  <img src="https://metrics.lecoq.io/balaji87-z?template=classic&base.header=0&base.repositories=100&base=header%2Cactivity%2Ccommunity%2Crepositories&languages=1&languages.limit=6&config.timezone=Asia%2FKolkata">
+  <img src="https://ghchart.rshah.org/green/balaji87-z" alt="Balaji87-z Contribution Chart">
 </p>
 ---
 
