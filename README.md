@@ -77,7 +77,7 @@ Collection of command-line utilities focused on:
 
 # 📊 SYSTEM METRICS
 <p align="center">
-  <img src="https://streak-stats.demolab.com?user=balaji87-z&theme=tokyonight">
+  <img src="https://metrics.lecoq.io/balaji87-z?template=classic&base.header=0&base.repositories=100&base=header%2Cactivity%2Ccommunity%2Crepositories&languages=1&languages.limit=6&config.timezone=Asia%2FKolkata">
 </p>
 ---
 
