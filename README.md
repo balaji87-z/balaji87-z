@@ -76,15 +76,10 @@ Collection of command-line utilities focused on:
 ---
 
 # 📊 SYSTEM METRICS
-
 <p align="center">
-
-<img src="https://github-readme-stats.vercel.app/api?username=balaji87-z&show_icons=true&theme=vision-friendly-dark" height="170"/>
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=balaji87-z&layout=compact&theme=vision-friendly-dark" height="170"/>
-
+  <img src="https://github-readme-stats.vercel.app/api?username=balaji87-z&show_icons=true&theme=vision-friendly-dark" height="170">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=balaji87-z&layout=compact&theme=vision-friendly-dark" height="170">
 </p>
-
 ---
 
 # 🔥 CONTRIBUTION STREAK
