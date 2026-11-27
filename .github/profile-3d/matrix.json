@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "fileName": "profile-3d-matrix.svg",
+  "backgroundColor": "#030806",
+  "foregroundColor": "#00FF41",
+  "strongColor": "#B6FFC8",
+  "weakColor": "#0A8F2E",
+  "radarColor": "#00FF41",
+  "growingAnimation": true,
+  "contribColors": ["#0B2A14", "#0A5C22", "#0E8F33", "#12C845", "#00FF41"]
+}
