@@ -17,9 +17,10 @@
 <p align="center">
   <a href="#whoami"><img src="assets/nav-whoami.svg" alt="whoami" width="158" /></a>
   <a href="#stack"><img src="assets/nav-stack.svg" alt="stack" width="158" /></a>
+  <a href="#zaplabs"><img src="assets/nav-zaplabs.svg" alt="zaplabs" width="158" /></a>
   <a href="#projects"><img src="assets/nav-projects.svg" alt="projects" width="158" /></a>
-  <a href="#pill"><img src="assets/nav-pill.svg" alt="pill" width="158" /></a>
   <br />
+  <a href="#pill"><img src="assets/nav-pill.svg" alt="pill" width="158" /></a>
   <a href="#telemetry"><img src="assets/nav-telemetry.svg" alt="telemetry" width="158" /></a>
   <a href="#snake"><img src="assets/nav-snake.svg" alt="snake" width="158" /></a>
   <a href="#network"><img src="assets/nav-network.svg" alt="network" width="158" /></a>
@@ -31,7 +32,7 @@
 <img src="assets/sec-01.svg" alt="01 — System Initialization" width="100%" />
 
 <p align="center">
-  <img src="assets/terminal.svg" alt="Terminal boot sequence. user: balaji87-z. role: cybersecurity learner. motto: Break. Build. Secure. focus: AI × Security, recon automation, Linux. building: kortex-shield, a WAF you can measure. learning: ethical hacking. exploring: LLMs for vulnerability discovery." width="100%" />
+  <img src="assets/terminal.svg" alt="Terminal boot sequence. user: balaji87-z. role: cybersecurity learner. motto: Break. Build. Secure. focus: AI × Security, recon automation, Linux. building: ZAP-LABS cyber range, kortex-shield WAF. learning: ethical hacking. exploring: LLMs for vulnerability discovery." width="100%" />
 </p>
 
 <br />
@@ -45,8 +46,21 @@
 
 <br />
 
+<a name="zaplabs"></a>
+<img src="assets/sec-03.svg" alt="03 — ZAP-LABS" width="100%" />
+
+<p align="center">
+  <img src="assets/zaplabs.svg" alt="ZAP-LABS, a web security cyber range. Break. Learn. Exploit. Defend. Break into 20 live targets across 10 vulnerability classes. Every target launches as your own ephemeral container with a fresh random flag, scored server-side. 4 security tiers per lab." width="100%" />
+</p>
+
+<p align="center">
+  <img src="assets/zaplabs-chain.svg" alt="ZAP-LABS attack chain: recon, enumeration, discovery, exploitation, privilege, capture. Vulnerability classes: auth, SQL injection, XSS, access control, file upload, path traversal, command injection, SSRF, JWT, business logic." width="100%" />
+</p>
+
+<br />
+
 <a name="projects"></a>
-<img src="assets/sec-03.svg" alt="03 — Current Projects" width="100%" />
+<img src="assets/sec-04.svg" alt="04 — Current Projects" width="100%" />
 
 <p align="center">
   <a href="https://github.com/balaji87-z/kortex-shield"><img src="assets/project-kortex.svg" alt="kortex-shield — a web application firewall built to a checkable standard: evaluation harness with frozen attack and benign corpora; baselines measured against OWASP CRS; proxy engine built on Coraza." width="100%" /></a>
@@ -67,7 +81,7 @@
 <br />
 
 <a name="pill"></a>
-<img src="assets/sec-04.svg" alt="04 — Choose Your Pill" width="100%" />
+<img src="assets/sec-05.svg" alt="05 — Choose Your Pill" width="100%" />
 
 <details>
 <summary><img src="assets/pill-red.svg" alt="Take the red pill — stay in Wonderland and see how deep the rabbit hole goes." width="94%" /></summary>
@@ -103,7 +117,7 @@ Connection to the Matrix closed.
 <br />
 
 <a name="telemetry"></a>
-<img src="assets/sec-05.svg" alt="05 — GitHub Telemetry" width="100%" />
+<img src="assets/sec-06.svg" alt="06 — GitHub Telemetry" width="100%" />
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/balaji87-z/balaji87-z/output/profile-3d-matrix.svg" alt="3D contribution graph with language and activity breakdown" width="100%" />
@@ -133,7 +147,7 @@ Connection to the Matrix closed.
 <br />
 
 <a name="snake"></a>
-<img src="assets/sec-06.svg" alt="06 — Contribution Snake" width="100%" />
+<img src="assets/sec-07.svg" alt="07 — Contribution Snake" width="100%" />
 
 <p align="center">
   <picture>
@@ -146,7 +160,7 @@ Connection to the Matrix closed.
 <br />
 
 <a name="transmission"></a>
-<img src="assets/sec-07.svg" alt="07 — Incoming Transmission" width="100%" />
+<img src="assets/sec-08.svg" alt="08 — Incoming Transmission" width="100%" />
 
 <p align="center">
   <img src="assets/transmission.svg" alt="Incoming transmission: Break. Build. Secure. / Trust nothing. Verify everything. / Measure first. Claim later. / Automate the boring. Investigate the strange. / Wake up, Neo..." width="100%" />
@@ -155,7 +169,7 @@ Connection to the Matrix closed.
 <br />
 
 <a name="network"></a>
-<img src="assets/sec-08.svg" alt="08 — Network" width="100%" />
+<img src="assets/sec-09.svg" alt="09 — Network" width="100%" />
 
 <p align="center">
   <a href="https://github.com/balaji87-z"><img src="assets/uplink.svg" alt="Connection established: github.com/balaji87-z" width="100%" /></a>

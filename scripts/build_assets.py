@@ -407,12 +407,13 @@ def hero():
 SECTIONS = [
     ("01", "SYSTEM INITIALIZATION", "boot sequence  /  whoami", "icosa"),
     ("02", "TECH STACK", "loaded modules", "cube"),
-    ("03", "CURRENT PROJECTS", "active operations", "octa"),
-    ("04", "CHOOSE YOUR PILL", "red or blue", "tetra"),
-    ("05", "GITHUB TELEMETRY", "live signal", "icosa"),
-    ("06", "CONTRIBUTION SNAKE", "grid crawler", "cube"),
-    ("07", "INCOMING TRANSMISSION", "intercepted signal", "octa"),
-    ("08", "NETWORK", "open channels", "tetra"),
+    ("03", "ZAP-LABS", "web security cyber range", "icosa"),
+    ("04", "CURRENT PROJECTS", "active operations", "octa"),
+    ("05", "CHOOSE YOUR PILL", "red or blue", "tetra"),
+    ("06", "GITHUB TELEMETRY", "live signal", "icosa"),
+    ("07", "CONTRIBUTION SNAKE", "grid crawler", "cube"),
+    ("08", "INCOMING TRANSMISSION", "intercepted signal", "octa"),
+    ("09", "NETWORK", "open channels", "tetra"),
 ]
 
 
@@ -451,7 +452,7 @@ TERMINAL = [
     ("o", "motto   : Break. Build. Secure."),
     ("o", "focus   : AI × Security, recon automation, Linux"),
     ("p", "$ cat now.txt"),
-    ("o", "building  -> kortex-shield, a WAF you can measure"),
+    ("o", "building  -> ZAP-LABS cyber range, kortex-shield WAF"),
     ("o", "learning  -> ethical hacking"),
     ("o", "exploring -> LLMs for vulnerability discovery"),
 ]
@@ -708,6 +709,115 @@ def uplink():
                             "Connection established: github.com/balaji87-z"))
 
 
+ZAP_STATS = [("20", "LIVE TARGETS"), ("10", "VULN CLASSES"), ("04", "SEC TIERS PER LAB")]
+ZAP_CHAIN = ["RECON", "ENUMERATION", "DISCOVERY", "EXPLOITATION", "PRIVILEGE", "CAPTURE"]
+ZAP_CLASSES = ["AUTH", "SQL INJECTION", "XSS", "ACCESS CONTROL", "FILE UPLOAD",
+               "PATH TRAVERSAL", "COMMAND INJECTION", "SSRF", "JWT", "BUSINESS LOGIC"]
+BOLT = "M18 -98L-56 12H-6L-26 98L56 -22H8L32 -98Z"
+
+
+def zaplabs():
+    w, h = 1200, 430
+    body = f'<rect width="{w}" height="{h}" fill="url(#panel)"/>'
+    body += rain(w, h, seed=42, step=40, size=14, opacity=0.13)
+    body += sheen(w, h, dur=9)
+    # emblem: an extruded lightning bolt inside spinning rings
+    cx, cy = 178, 212
+    body += f'<circle cx="{cx}" cy="{cy}" r="150" fill="#010302" opacity=".6"/>'
+    for r, dash, dur, sign in ((138, "4 12", 36, 1), (120, "40 14", 24, -1)):
+        body += (f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="{G}" stroke-width="1.6" opacity=".55" '
+                 f'stroke-dasharray="{dash}"><animateTransform attributeName="transform" type="rotate" '
+                 f'dur="{dur}s" repeatCount="indefinite" values="0 {cx} {cy};{sign * 360} {cx} {cy}"/></circle>')
+    body += wire("icosa", cx, cy, 104, sw=1.1, speed=14)
+    flick = ('<animate attributeName="opacity" dur="2.6s" repeatCount="indefinite" '
+             'values="1;1;.35;1;.6;1;1" keyTimes="0;.62;.66;.7;.74;.8;1"/>')
+    body += (f'<g transform="translate({cx} {cy})">'
+             '<animateTransform attributeName="transform" type="translate" dur="4s" repeatCount="indefinite" '
+             f'values="{cx} {cy};{cx} {cy - 8};{cx} {cy}" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/>'
+             f'<path d="{BOLT}" fill="{G}" filter="url(#gl2)" opacity=".9" transform="translate(7 7)">{flick}</path>')
+    for i in range(14, 0, -1):
+        body += f'<path d="{BOLT}" fill="{mix("#037020", "#011F09", i / 14)}" transform="translate({i} {i})"/>'
+    body += (f'<path d="{BOLT}" fill="url(#top)" stroke="{HI}" stroke-width="1.5" stroke-linejoin="round"/></g>')
+    # sparks jumping off the bolt
+    for i, (x1, y1, x2, y2) in enumerate(((258, 150, 292, 132), (86, 262, 54, 282), (268, 268, 300, 292),
+                                           (92, 150, 62, 128))):
+        body += (f'<path d="M{x1} {y1}L{(x1 + x2) / 2 + 6} {(y1 + y2) / 2 - 7}L{x2} {y2}" fill="none" stroke="{HI}" '
+                 f'stroke-width="2.4" stroke-linecap="round" opacity="0">'
+                 f'<animate attributeName="opacity" dur="2.6s" begin="{i * 0.45}s" repeatCount="indefinite" '
+                 f'values="0;0;1;0;.8;0;0" keyTimes="0;.6;.64;.68;.72;.78;1"/></path>')
+    # title block
+    body += (f'<text x="372" y="56" class="m" font-size="15" fill="{G}" opacity=".8" letter-spacing="5">'
+             f'// BREAK. LEARN. EXPLOIT. DEFEND.</text>')
+    body += ext_text("ZAP-LABS", 368, 138, 84, depth=11, cls="s x", glow_filter="gl2", glow_cls="pu",
+                     extra='textLength="470" lengthAdjust="spacingAndGlyphs"', side_far="#011F09",
+                     side_near="#037020")
+    body += ext_text("WEB SECURITY CYBER RANGE", 372, 190, 26, depth=3, ls=6, top=HI)
+    body += (f'<text class="m" font-size="18" fill="{HI}">'
+             f'<tspan x="372" y="232">Break into 20 live targets across 10 vulnerability classes.</tspan>'
+             f'<tspan x="372" y="258" fill="{G}">Every target launches as your own ephemeral container</tspan>'
+             f'<tspan x="372" y="282" fill="{G}">with a fresh random flag, scored server-side.</tspan></text>')
+    body += eq_bars(1050, 62, count=9, seed=77, hmax=38)
+    for i, (num, label) in enumerate(ZAP_STATS):
+        x = 372 + i * 268
+        body += slab(x, 310, 244, 84, r=12, depth=9, fill="#040C07", pulse=True)
+        body += ext_text(num, x + 20, 372, 54, depth=5, cls="s x", glow=None)
+        body += (f'<text x="{x + 104}" y="358" class="m b" font-size="15" fill="{HI}" letter-spacing="2">')
+        words = label.split(" ")
+        first = " ".join(words[:2]) if len(words) > 2 else words[0]
+        rest = " ".join(words[2:]) if len(words) > 2 else " ".join(words[1:])
+        body += (f'<tspan x="{x + 104}" dy="-10">{first}</tspan>'
+                 f'<tspan x="{x + 104}" dy="21">{rest}</tspan></text>')
+    label = ("ZAP-LABS, a web security cyber range. Break. Learn. Exploit. Defend. Break into 20 live targets "
+             "across 10 vulnerability classes. Every target launches as your own ephemeral container with a "
+             "fresh random flag, scored server-side. 4 security tiers per lab.")
+    write("zaplabs.svg", doc(w, h, clip(w, h, 16, body) + frame(w, h, 16), label))
+
+
+def zapchain():
+    w, h = 1200, 372
+    cycle = 6.0
+    css = (f"@keyframes nd{{0%{{opacity:0}}4%{{opacity:1}}22%{{opacity:0}}100%{{opacity:0}}}}"
+           f".nd{{opacity:0;animation:nd {cycle}s infinite}}")
+    body = f'<rect width="{w}" height="{h}" fill="url(#panel)"/>'
+    body += (f'<text x="34" y="42" class="m" font-size="15" fill="{G}" opacity=".8" letter-spacing="5">'
+             f'// ATTACK CHAIN</text>')
+    xs = [112 + i * 195.2 for i in range(len(ZAP_CHAIN))]
+    y = 108
+    body += (f'<path d="M{xs[0]} {y}H{xs[-1]}" stroke="{G}" stroke-width="2" stroke-dasharray="3 9" opacity=".7"/>')
+    body += (f'<circle cy="{y}" r="7" fill="{HI}"><animate attributeName="cx" dur="{cycle}s" '
+             f'repeatCount="indefinite" values="{xs[0]};{n(xs[-1] + 195.2)}"/>'
+             f'<animate attributeName="opacity" dur="{cycle}s" repeatCount="indefinite" values="1;1;0;0" '
+             f'keyTimes="0;.83;.86;1"/></circle>')
+    for i, (x, name) in enumerate(zip(xs, ZAP_CHAIN)):
+        delay = f'style="animation-delay:{n(i * cycle / len(ZAP_CHAIN))}s"'
+        hexagon = (f"M{n(x)} {y - 40}L{n(x + 35)} {y - 20}V{y + 20}L{n(x)} {y + 40}"
+                   f"L{n(x - 35)} {y + 20}V{y - 20}Z")
+        for d in range(7, 0, -1):
+            body += (f'<path d="{hexagon}" fill="{mix("#03461A", "#011A08", d / 7)}" '
+                     f'transform="translate({d} {d})"/>')
+        body += (f'<path d="{hexagon}" fill="#06200F" stroke="{G}" stroke-width="1.6"/>'
+                 f'<path d="{hexagon}" fill="#0E8F33" stroke="{G}" stroke-width="10" stroke-linejoin="round" '
+                 f'class="nd" {delay}/>'
+                 f'<text x="{n(x)}" y="{y + 10}" class="m x" font-size="27" text-anchor="middle" '
+                 f'fill="{HI}">{i + 1:02d}</text>'
+                 f'<text x="{n(x)}" y="{y + 76}" class="m b" font-size="16" text-anchor="middle" fill="{HI}" '
+                 f'letter-spacing="1.5">{name}</text>')
+    body += f'<path d="M34 212H1166" stroke="{G}" stroke-width="1.2" opacity=".3"/>'
+    body += (f'<text x="34" y="244" class="m" font-size="15" fill="{G}" opacity=".8" letter-spacing="5">'
+             f'// 10 VULNERABILITY CLASSES</text>')
+    for i, name in enumerate(ZAP_CLASSES):
+        x = 34 + (i % 5) * 229
+        yy = 262 + (i // 5) * 52
+        body += slab(x, yy, 212, 36, r=9, depth=5, fill="#040C07")
+        body += (f'<circle cx="{x + 18}" cy="{yy + 18}" r="4.5" fill="{G}" class="bl" '
+                 f'style="animation-delay:-{n(i * 0.23)}s"/>'
+                 f'<text x="{x + 34}" y="{yy + 23}" class="m b" font-size="14" fill="{HI}" '
+                 f'letter-spacing=".5">{name}</text>')
+    label = ("ZAP-LABS attack chain: " + ", ".join(c.lower() for c in ZAP_CHAIN) + ". Vulnerability classes: "
+             + ", ".join(c.lower() for c in ZAP_CLASSES) + ".")
+    write("zaplabs-chain.svg", doc(w, h, clip(w, h, 16, body) + frame(w, h, 16), label, css=css))
+
+
 SIGNALS = [
     "Break. Build. Secure.",
     "Trust nothing. Verify everything.",
@@ -795,7 +905,7 @@ def footer():
     write("footer.svg", doc(w, h, clip(w, h, 20, body) + frame(w, h, 20), "End of transmission", defs=defs))
 
 
-NAV = ["whoami", "stack", "projects", "pill", "telemetry", "snake", "network"]
+NAV = ["whoami", "stack", "zaplabs", "projects", "pill", "telemetry", "snake", "network"]
 
 
 def main():
@@ -805,6 +915,8 @@ def main():
         section(*s)
     terminal()
     stack()
+    zaplabs()
+    zapchain()
     for p in PROJECTS:
         project(*p)
     pill("red", RED, "#7A0018", "#FFC2CC", "TAKE THE RED PILL", "Stay in Wonderland and see how deep the rabbit hole goes.")
