@@ -30,13 +30,17 @@ jobs:
           USERNAME: balaji87-z
           SETTING_JSON: .github/profile-3d/matrix.json
 
+      # The snake step runs in a container and leaves dist/ owned by root,
+      # so gather everything in a directory this job can write to.
       - name: Collect generated graphics
-        run: mv profile-3d-contrib/*.svg dist/
+        run: |
+          mkdir -p public
+          cp dist/*.svg profile-3d-contrib/*.svg public/
 
       - name: Push graphics to output branch
         uses: crazy-max/ghaction-github-pages@v5
         with:
           target_branch: output
-          build_dir: dist
+          build_dir: public
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
