@@ -6,11 +6,14 @@ every file in assets/. GitHub shows these through <img>, so they cannot use
 scripts, external fonts or external images: everything is plain SVG with SMIL
 and CSS animation.
 """
+import colorsys
+import contextlib
 import itertools
 import json
 import math
 import pathlib
 import random
+import re
 from html import escape
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -22,6 +25,60 @@ HI = "#B6FFC8"     # highlight
 MID = "#00B32C"
 DIM = "#0A5C22"
 BG = "#030806"
+
+# Every generator below draws in matrix green. A section gets its own colour by
+# running inside `with theme(...)`, which re-tints the finished SVG: each green
+# keeps its lightness and takes the theme's hue. Red, amber and green repeat the
+# portfolio's Break / Build / Secure colours.
+THEMES = {
+    "green": G,
+    "cyan": "#2DE2FF",
+    "amber": "#FFB547",
+    "red": "#FF4D5E",
+    "violet": "#B37DFF",
+    "pink": "#FF5FD2",
+    "blue": "#6A9CFF",
+}
+_theme = "green"
+
+
+@contextlib.contextmanager
+def theme(name):
+    global _theme
+    previous, _theme = _theme, name
+    try:
+        yield
+    finally:
+        _theme = previous
+
+
+def _rgb(color):
+    return [int(color[i:i + 2], 16) for i in (1, 3, 5)]
+
+
+def keep(color):
+    """A colour the section theme must leave alone (re-tinting only touches #RRGGBB)."""
+    return "rgb({},{},{})".format(*_rgb(color))
+
+
+def tint(color, name):
+    """`color`, one of the greens used here, as it appears in theme `name`."""
+    if name == "green":
+        return color
+    th, tl, ts = colorsys.rgb_to_hls(*(v / 255 for v in _rgb(THEMES[name])))
+    _, l, sat = colorsys.rgb_to_hls(*(v / 255 for v in _rgb(color)))
+    if sat < 0.12:
+        return color
+    # full shift at mid lightness, so G lands exactly on the theme colour; none at black or white
+    l = min(1.0, l + (tl - 0.5) * (1 - abs(2 * l - 1)))
+    return "#" + "".join(f"{round(v * 255):02X}" for v in colorsys.hls_to_rgb(th, l, sat * ts))
+
+
+MOTTO = (("Break.", THEMES["red"]), ("Build.", THEMES["amber"]), ("Secure.", G))
+
+
+def motto_spans(upper=False):
+    return " ".join(f'<tspan fill="{keep(c)}">{w.upper() if upper else w.lower()}</tspan>' for w, c in MOTTO)
 
 BASE_CSS = (
     ".m{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,"
@@ -59,8 +116,7 @@ def n(v):
 
 
 def mix(c1, c2, t):
-    a = [int(c1[i:i + 2], 16) for i in (1, 3, 5)]
-    b = [int(c2[i:i + 2], 16) for i in (1, 3, 5)]
+    a, b = _rgb(c1), _rgb(c2)
     return "#" + "".join(f"{round(x + (y - x) * t):02X}" for x, y in zip(a, b))
 
 
@@ -73,6 +129,7 @@ def doc(w, h, body, label, css="", defs=""):
 
 
 def write(name, content):
+    content = re.sub(r"#[0-9A-Fa-f]{6}\b", lambda m: tint(m.group(0), _theme), content)
     (OUT / name).write_text(content)
 
 
@@ -390,7 +447,11 @@ def hero():
     body += ext_text(NAME.upper(), 600, 212, 104, depth=13, cls="s x", anchor="middle", dx=1.1, dy=1.1,
                      extra='transform="translate(600 0) scale(.83 1) translate(-600 0)"', glow_filter="gl2",
                      glow_cls="pu", side_far="#011F09", side_near="#037020")
-    body += ext_text("BREAK. BUILD. SECURE.", 600, 278, 27, depth=3, anchor="middle", ls=9, top=HI)
+    body += ext_text("BREAK. BUILD. SECURE.", 600, 278, 27, depth=3, anchor="middle", ls=9, top="none",
+                     glow=None, side_far="#0B0F0D", side_near="#222B26")
+    motto = ('<text x="600" y="278" class="m b" font-size="27" text-anchor="middle" letter-spacing="9"{}>'
+             + motto_spans(upper=True) + "</text>")
+    body += motto.format(' filter="url(#gl)" opacity=".8"') + motto.format("")
     body += (f'<text x="600" y="308" class="m b" font-size="15" text-anchor="middle" letter-spacing="6" '
              f'fill="{G}" opacity=".9">AI × SECURITY  //  AUTOMATION  //  LINUX</text>')
     body += (f'<rect y="-120" width="{w}" height="120" fill="url(#scan)">'
@@ -406,13 +467,13 @@ def hero():
 
 
 SECTIONS = [
-    ("01", "SYSTEM INITIALIZATION", "boot sequence  /  whoami", "icosa"),
-    ("02", "TECH STACK", "loaded modules", "cube"),
-    ("03", "ZAP-LABS", "web security cyber range", "icosa"),
-    ("04", "CURRENT PROJECTS", "active operations", "octa"),
-    ("05", "GITHUB TELEMETRY", "live signal", "icosa"),
-    ("06", "CONTRIBUTION SNAKE", "grid crawler", "cube"),
-    ("07", "NETWORK", "open channels", "tetra"),
+    ("01", "SYSTEM INITIALIZATION", "boot sequence  /  whoami", "icosa", "cyan"),
+    ("02", "TECH STACK", "loaded modules", "cube", "amber"),
+    ("03", "ZAP-LABS", "web security cyber range", "icosa", "red"),
+    ("04", "CURRENT PROJECTS", "active operations", "octa", "green"),
+    ("05", "GITHUB TELEMETRY", "live signal", "icosa", "violet"),
+    ("06", "CONTRIBUTION SNAKE", "grid crawler", "cube", "pink"),
+    ("07", "NETWORK", "open channels", "tetra", "blue"),
 ]
 
 
@@ -464,8 +525,9 @@ def terminal():
     body = f'<rect width="{w}" height="{h}" rx="16" fill="{BG}"/>'
     body += slab(26, 24, 770, 410, r=14, depth=12, fill="#040C07")
     body += (f'<path d="M26 62H796" stroke="{G}" stroke-width="1.2" opacity=".5"/>'
-             '<circle cx="52" cy="43" r="7" fill="#FF5F57"/><circle cx="76" cy="43" r="7" fill="#FEBC2E"/>'
-             '<circle cx="100" cy="43" r="7" fill="#28C840"/>'
+             f'<circle cx="52" cy="43" r="7" fill="{keep("#FF5F57")}"/>'
+             f'<circle cx="76" cy="43" r="7" fill="{keep("#FEBC2E")}"/>'
+             f'<circle cx="100" cy="43" r="7" fill="{keep("#28C840")}"/>'
              f'<text x="411" y="48" class="m" font-size="14" text-anchor="middle" fill="{G}" opacity=".8" '
              f'letter-spacing="2">balaji87-z@matrix: ~</text>')
     lines_glow, lines = "", ""
@@ -839,12 +901,12 @@ def open_to_work():
     # beacon: rings leaving a steady light
     bx, by = 84, 69
     for i in range(3):
-        body += (f'<circle cx="{bx}" cy="{by}" r="12" fill="none" stroke="{G}" stroke-width="2" opacity="0">'
+        body += (f'<circle cx="{bx}" cy="{by}" r="12" fill="none" stroke="{keep(G)}" stroke-width="2" opacity="0">'
                  f'<animate attributeName="r" dur="2.4s" begin="{i * 0.8}s" repeatCount="indefinite" values="12;46"/>'
                  f'<animate attributeName="opacity" dur="2.4s" begin="{i * 0.8}s" repeatCount="indefinite" '
                  f'values=".9;0"/></circle>')
-    body += (f'<circle cx="{bx}" cy="{by}" r="20" fill="{G}" opacity=".25" class="pu"/>'
-             f'<circle cx="{bx}" cy="{by}" r="12" fill="url(#top)"/>')
+    body += (f'<circle cx="{bx}" cy="{by}" r="20" fill="{keep(G)}" opacity=".25" class="pu"/>'
+             f'<circle cx="{bx}" cy="{by}" r="12" fill="{keep(G)}"/>')
     body += ext_text("OPEN TO WORK", 158, 72, 44, depth=6, ls=5)
     body += (f'<text x="160" y="106" class="m" font-size="18" fill="{HI}">Security Analyst'
              f'<tspan fill="{G}">  //  </tspan>{EMAIL}</text>')
@@ -893,35 +955,43 @@ def footer():
     body += grid_floor(600, horizon, h, rows=8)
     body += ext_text("END OF TRANSMISSION", 600, 48, 30, depth=5, ls=8, anchor="middle")
     body += (f'<text x="600" y="228" class="m b" font-size="15" text-anchor="middle" fill="{HI}" '
-             f'letter-spacing="5">{NAME.lower()}  //  break. build. secure.<tspan class="bl" fill="{G}"> █</tspan></text>')
+             f'letter-spacing="5">{NAME.lower()}  //  {motto_spans()}<tspan class="bl" fill="{G}"> █</tspan></text>')
     write("footer.svg", doc(w, h, clip(w, h, 20, body) + frame(w, h, 20), "End of transmission", defs=defs))
 
 
+# one jump button per section, in the order of SECTIONS
 NAV = ["whoami", "stack", "zaplabs", "projects", "telemetry", "snake", "network"]
 
 
 def main():
     OUT.mkdir(exist_ok=True)
     hero()
-    for s in SECTIONS:
-        section(*s)
-    terminal()
-    stack()
-    modules()
-    zaplabs()
-    zapchain()
-    for p in PROJECTS:
-        project(*p)
-    uplink()
-    open_to_work()
-    button("btn-github", "GITHUB PROFILE", "github")
-    button("btn-repos", "REPOSITORIES", "git")
-    button("btn-kortex", "KORTEX-SHIELD", "shield")
-    button("btn-portfolio", "PORTFOLIO", "window")
-    button("btn-email", EMAIL, "mail", w=620, aria=f"Email {EMAIL}")
-    for name in NAV:
-        button(f"nav-{name}", name.upper(), w=214, h=70, size=21, depth=6)
-    button("btn-top", "BACK TO TOP", w=300, h=70, size=21, depth=6)
+    colour = {}
+    for nav, (num, title, sub, shape, name) in zip(NAV, SECTIONS):
+        colour[nav] = name
+        with theme(name):
+            section(num, title, sub, shape)
+            button(f"nav-{nav}", nav.upper(), w=214, h=70, size=21, depth=6)
+    with theme(colour["whoami"]):
+        terminal()
+    with theme(colour["stack"]):
+        stack()
+        modules()
+    with theme(colour["zaplabs"]):
+        zaplabs()
+        zapchain()
+    with theme(colour["projects"]):
+        for p in PROJECTS:
+            project(*p)
+    with theme(colour["network"]):
+        uplink()
+        open_to_work()
+        button("btn-github", "GITHUB PROFILE", "github")
+        button("btn-repos", "REPOSITORIES", "git")
+        button("btn-kortex", "KORTEX-SHIELD", "shield")
+        button("btn-portfolio", "PORTFOLIO", "window")
+        button("btn-email", EMAIL, "mail", w=620, aria=f"Email {EMAIL}")
+        button("btn-top", "BACK TO TOP", w=300, h=70, size=21, depth=6)
     footer()
     total = sum(f.stat().st_size for f in OUT.glob("*.svg"))
     print(f"wrote {len(list(OUT.glob('*.svg')))} files, {total / 1024:.0f} KB")

@@ -83,11 +83,11 @@
 </p>
 
 <p align="center">
-  <img height="172" src="https://github-readme-stats.vercel.app/api/top-langs/?username=balaji87-z&layout=compact&bg_color=030806&title_color=00FF41&text_color=B6FFC8&border_color=00FF41&border_radius=12" alt="Most used languages" />
+  <img height="172" src="https://github-readme-stats.vercel.app/api/top-langs/?username=balaji87-z&layout=compact&bg_color=08040C&title_color=B37DFF&text_color=E9DAFF&border_color=B37DFF&border_radius=12" alt="Most used languages" />
 </p>
 
 <p align="center">
-  <img src="https://streak-stats.demolab.com?user=balaji87-z&background=030806&border=00FF41&border_radius=12&ring=00FF41&fire=00FF41&currStreakLabel=00FF41&sideLabels=00FF41&currStreakNum=B6FFC8&sideNums=B6FFC8&dates=0A8F2E&stroke=00FF41" alt="Contribution streak" />
+  <img src="https://streak-stats.demolab.com?user=balaji87-z&background=08040C&border=B37DFF&border_radius=12&ring=B37DFF&fire=B37DFF&currStreakLabel=B37DFF&sideLabels=B37DFF&currStreakNum=E9DAFF&sideNums=E9DAFF&dates=9555F0&stroke=B37DFF" alt="Contribution streak" />
 </p>
 
 <br />
