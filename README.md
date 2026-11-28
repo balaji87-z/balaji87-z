@@ -41,6 +41,10 @@
   <img src="assets/stack.svg" alt="Tech stack: Python, Bash, Linux, Kali, Docker, AWS, Git, GitHub Actions" width="100%" />
 </p>
 
+<p align="center">
+  <img src="assets/stack-modules.svg" alt="Loaded modules. Languages: Python, JavaScript, TypeScript, Go, Bash. Web and data: Node.js, Express, Fastify, React, Supabase, PostgreSQL. Infrastructure: Linux, Kali, Docker, Traefik, Caddy, Nginx, AWS. Security and testing: OWASP CRS, ModSecurity, Coraza, Playwright, pytest, GitHub Actions." width="100%" />
+</p>
+
 <br />
 
 <a name="zaplabs"></a>
@@ -60,7 +64,7 @@
 <img src="assets/sec-04.svg" alt="04 — Current Projects" width="100%" />
 
 <p align="center">
-  <a href="https://github.com/balaji87-z/kortex-shield"><img src="assets/project-kortex.svg" alt="kortex-shield — a web application firewall built to a checkable standard: evaluation harness with frozen attack and benign corpora; baselines measured against OWASP CRS; proxy engine built on Coraza." width="100%" /></a>
+  <a href="https://github.com/balaji87-z/kortex-shield"><img src="assets/project-kortex.svg" alt="kortex-shield — a web application firewall built to a checkable standard: evaluation harness with frozen attack and benign corpora; baselines measured against OWASP CRS; proxy engine built on Coraza. 1,054 attack samples, 4 attack families, 2 engines compared." width="100%" /></a>
 </p>
 
 <p align="center">

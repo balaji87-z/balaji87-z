@@ -578,20 +578,59 @@ def stack():
     write("stack.svg", doc(w, h, clip(w, h, 16, body) + frame(w, h, 16), label, defs=defs))
 
 
+MODULES = [
+    ("LANGUAGES", [("Python", "python"), ("JavaScript", "javascript"), ("TypeScript", "typescript"),
+                   ("Go", "go"), ("Bash", "gnubash")]),
+    ("WEB & DATA", [("Node.js", "nodedotjs"), ("Express", "express"), ("Fastify", "fastify"),
+                    ("React", "react"), ("Supabase", "supabase"), ("PostgreSQL", "postgresql")]),
+    ("INFRASTRUCTURE", [("Linux", "linux"), ("Kali", "kalilinux"), ("Docker", "docker"),
+                        ("Traefik", "traefikproxy"), ("Caddy", "caddy"), ("Nginx", "nginx"), ("AWS", "aws")]),
+    ("SECURITY & TESTING", [("OWASP CRS", "owasp"), ("ModSecurity", "shield"), ("Coraza", "shield"),
+                            ("Playwright", "playwright"), ("pytest", "pytest"),
+                            ("GitHub Actions", "githubactions")]),
+]
+
+
+def modules():
+    rows = max(len(items) for _, items in MODULES)
+    w, h = 1200, 112 + rows * 34
+    col_w, gap, x0 = 270, 22, 27
+    body = f'<rect width="{w}" height="{h}" fill="url(#panel)"/>'
+    body += rain(w, h, seed=58, step=40, size=14, opacity=0.1)
+    for c, (title, items) in enumerate(MODULES):
+        x = x0 + c * (col_w + gap)
+        body += slab(x, 20, col_w, h - 52, r=12, depth=9, fill="#040C07")
+        body += (f'<text x="{x + 20}" y="52" class="m b" font-size="15" fill="{HI}" letter-spacing="2">'
+                 f'{escape(title)}</text>'
+                 f'<circle cx="{x + col_w - 24}" cy="47" r="5" fill="{G}" class="bl" '
+                 f'style="animation-delay:{c * 0.35}s"/>'
+                 f'<path d="M{x + 20} 66H{x + col_w - 20}" stroke="{G}" stroke-width="1.2" opacity=".45"/>')
+        for r, (name, icon_name) in enumerate(items):
+            y = 98 + r * 34
+            body += icon(icon_name, x + 22, y - 17, 22, color=HI, glow=False)
+            body += f'<text x="{x + 58}" y="{y}" class="m" font-size="18" fill="{G}">{escape(name)}</text>'
+    label = "Loaded modules. " + " ".join(
+        f"{title.title()}: " + ", ".join(name for name, _ in items) + "." for title, items in MODULES)
+    write("stack-modules.svg", doc(w, h, clip(w, h, 16, body) + frame(w, h, 16), label))
+
+
 PROJECTS = [
     ("kortex", "01", "KORTEX-SHIELD", "A web application firewall built to a checkable standard",
      ["evaluation harness with frozen attack and benign corpora",
       "baselines measured against OWASP CRS",
-      "proxy engine built on Coraza"], "icosa", "PUBLIC REPO"),
+      "proxy engine built on Coraza"], "icosa", "PUBLIC REPO",
+     [("1,054", "ATTACK SAMPLES"), ("04", "ATTACK FAMILIES"), ("02", "ENGINES COMPARED")]),
 ]
 
 
-def project(slug, num, title, tagline, bullets, shape, status):
-    w, h = 1200, 262
-    body = slab(8, 8, 1172, 234, r=16, depth=12)
+def project(slug, num, title, tagline, bullets, shape, status, metrics=()):
+    grow = 100 if metrics else 0
+    w, h = 1200, 262 + grow
+    body = slab(8, 8, 1172, 234 + grow, r=16, depth=12)
     cid = uid("c")
-    body += (f'<defs><clipPath id="{cid}"><rect x="8" y="8" width="1172" height="234" rx="16"/></clipPath></defs>'
-             f'<g clip-path="url(#{cid})">{sheen(w, 250, dur=9, begin=int(num) * 1.3)}</g>')
+    body += (f'<defs><clipPath id="{cid}"><rect x="8" y="8" width="1172" height="{234 + grow}" rx="16"/></clipPath>'
+             f'</defs><g clip-path="url(#{cid})">{sheen(w, 250 + grow, dur=9, begin=int(num) * 1.3)}</g>')
+    body += f'<g transform="translate(0 {grow // 2})">'
     # left: spinning solid inside a hexagon
     hx = "M124 34L203 79.5V170.5L124 216L45 170.5V79.5Z"
     body += (f'<path d="{hx}" fill="#03140A" stroke="{G}" stroke-width="8" opacity=".16" class="pu"/>'
@@ -599,7 +638,8 @@ def project(slug, num, title, tagline, bullets, shape, status):
     body += wire(shape, 124, 125, 58, sw=1.7)
     body += (f'<text x="124" y="235" class="m b" font-size="13" text-anchor="middle" fill="{G}" opacity=".7" '
              f'letter-spacing="4">OP-{num}</text>')
-    body += f'<path d="M238 40V212" stroke="{G}" stroke-width="1.2" opacity=".35"/>'
+    body += "</g>"
+    body += f'<path d="M238 40V{212 + grow}" stroke="{G}" stroke-width="1.2" opacity=".35"/>'
     body += ext_text(title, 268, 78, 34, depth=5, ls=3)
     body += (f'<text x="270" y="112" class="m" font-size="18" fill="{HI}">{escape(tagline)}</text>')
     for i, b in enumerate(bullets):
@@ -617,7 +657,20 @@ def project(slug, num, title, tagline, bullets, shape, status):
         body += (f'<text x="1152" y="110" class="m b pu" font-size="15" text-anchor="end" fill="{G}" '
                  f'letter-spacing="2">CLICK TO OPEN</text>'
                  f'<path d="M1136 120l14 9-14 9z" fill="{HI}" class="bl"/>')
+    for i, (value, caption) in enumerate(metrics):
+        x = 268 + i * 302
+        size = 46
+        # advance widths of Arial Black digits, so the caption starts clear of the number
+        num_w = sum(0.333 if ch in ",." else 0.667 for ch in value) * size
+        body += slab(x, 232, 280, 80, r=12, depth=8, fill="#040C07", pulse=True)
+        body += ext_text(value, x + 18, 289, size, depth=5, cls="s x", glow=None)
+        first, _, rest = caption.partition(" ")
+        tx = n(x + 18 + num_w + 16)
+        body += (f'<text class="m b" font-size="15" fill="{HI}" letter-spacing="2">'
+                 f'<tspan x="{tx}" y="268">{first}</tspan><tspan x="{tx}" y="289">{rest}</tspan></text>')
     label = f"{title.title()} — {tagline}: " + "; ".join(bullets) + f". Status: {status.lower()}."
+    if metrics:
+        label += " " + ", ".join(f"{v.lstrip('0')} {c.lower()}" for v, c in metrics) + "."
     write(f"project-{slug}.svg", doc(w, h, body, label))
 
 
@@ -829,6 +882,7 @@ def main():
         section(*s)
     terminal()
     stack()
+    modules()
     zaplabs()
     zapchain()
     for p in PROJECTS:
