@@ -358,6 +358,9 @@ def frame(w, h, r):
 
 # ---------------------------------------------------------------- assets
 
+NAME = "Kavin Harish"
+
+
 def hero():
     w, h = 1200, 440
     horizon = 328
@@ -386,8 +389,8 @@ def hero():
         body += (f'<g transform="rotate(-18 {cx} 176)"><circle r="4.5" fill="{HI}">'
                  f'<animateMotion dur="6s" repeatCount="indefinite" '
                  f'path="M{cx - 112} 176a112 34 0 1 0 224 0a112 34 0 1 0 -224 0"/></circle></g>')
-    body += ext_text("BALAJI", 600, 222, 150, depth=16, cls="s x", anchor="middle", dx=1.1, dy=1.1,
-                     extra='textLength="600" lengthAdjust="spacingAndGlyphs"', glow_filter="gl2",
+    body += ext_text(NAME.upper(), 600, 212, 104, depth=13, cls="s x", anchor="middle", dx=1.1, dy=1.1,
+                     extra='transform="translate(600 0) scale(.83 1) translate(-600 0)"', glow_filter="gl2",
                      glow_cls="pu", side_far="#011F09", side_near="#037020")
     body += ext_text("BREAK. BUILD. SECURE.", 600, 278, 27, depth=3, anchor="middle", ls=9, top=HI)
     body += (f'<text x="600" y="308" class="m b" font-size="15" text-anchor="middle" letter-spacing="6" '
@@ -401,7 +404,7 @@ def hero():
              f'<circle cx="1052" cy="53" r="11" fill="{G}" opacity=".25" class="pu"/>'
              f'<text x="1070" y="58" class="m b" font-size="15" fill="{G}" letter-spacing="3">ONLINE</text>')
     write("hero.svg", doc(w, h, clip(w, h, 20, body) + frame(w, h, 20),
-                          "BALAJI — Break. Build. Secure. AI × Security, automation, Linux.", defs=defs))
+                          f"{NAME} — Break. Build. Secure. AI × Security, automation, Linux.", defs=defs))
 
 
 SECTIONS = [
@@ -447,10 +450,10 @@ TERMINAL = [
     ("o", "> initializing environment ... [ OK ]"),
     ("o", "> mounting /dev/curiosity .... [ OK ]"),
     ("p", "$ whoami"),
-    ("o", "user    : balaji87-z"),
+    ("o", "user    : Kavin Harish"),
     ("o", "role    : cybersecurity learner"),
     ("o", "motto   : Break. Build. Secure."),
-    ("o", "focus   : AI × Security, recon automation, Linux"),
+    ("o", "focus   : AI × Security, automation, Linux"),
     ("p", "$ cat now.txt"),
     ("o", "building  -> ZAP-LABS cyber range, kortex-shield WAF"),
     ("o", "learning  -> ethical hacking"),
@@ -584,13 +587,6 @@ PROJECTS = [
      ["evaluation harness with frozen attack and benign corpora",
       "baselines measured against OWASP CRS",
       "proxy engine built on Coraza"], "icosa", "PUBLIC REPO"),
-    ("recon", "02", "RECON AUTOMATION TOOLKIT", "Automation for reconnaissance during security research",
-     ["automated target discovery", "endpoint enumeration", "scripting utilities"], "octa", "IN PROGRESS"),
-    ("ai", "03", "AI SECURITY EXPERIMENTS", "How AI models can assist vulnerability discovery",
-     ["automation with LLMs", "security workflow assistance", "intelligent scanning concepts"],
-     "cube", "IN PROGRESS"),
-    ("cli", "04", "CLI DEVELOPER TOOLS", "Command-line utilities for everyday work",
-     ["developer productivity", "automation workflows", "Linux scripting utilities"], "tetra", "IN PROGRESS"),
 ]
 
 
@@ -905,7 +901,7 @@ def footer():
     body += grid_floor(600, horizon, h, rows=8)
     body += ext_text("END OF TRANSMISSION", 600, 48, 30, depth=5, ls=8, anchor="middle")
     body += (f'<text x="600" y="228" class="m b" font-size="15" text-anchor="middle" fill="{HI}" '
-             f'letter-spacing="5">balaji87-z  //  break. build. secure.<tspan class="bl" fill="{G}"> █</tspan></text>')
+             f'letter-spacing="5">{NAME.lower()}  //  break. build. secure.<tspan class="bl" fill="{G}"> █</tspan></text>')
     write("footer.svg", doc(w, h, clip(w, h, 20, body) + frame(w, h, 20), "End of transmission", defs=defs))
 
 

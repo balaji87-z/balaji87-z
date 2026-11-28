@@ -1,7 +1,7 @@
 <a name="top"></a>
 
 <p align="center">
-  <a href="https://github.com/balaji87-z"><img src="assets/hero.svg" alt="BALAJI — Break. Build. Secure. AI × Security, automation, Linux." width="100%" /></a>
+  <a href="https://github.com/balaji87-z"><img src="assets/hero.svg" alt="Kavin Harish — Break. Build. Secure. AI × Security, automation, Linux." width="100%" /></a>
 </p>
 
 <p align="center">
@@ -32,7 +32,7 @@
 <img src="assets/sec-01.svg" alt="01 — System Initialization" width="100%" />
 
 <p align="center">
-  <img src="assets/terminal.svg" alt="Terminal boot sequence. user: balaji87-z. role: cybersecurity learner. motto: Break. Build. Secure. focus: AI × Security, recon automation, Linux. building: ZAP-LABS cyber range, kortex-shield WAF. learning: ethical hacking. exploring: LLMs for vulnerability discovery." width="100%" />
+  <img src="assets/terminal.svg" alt="Terminal boot sequence. user: Kavin Harish. role: cybersecurity learner. motto: Break. Build. Secure. focus: AI × Security, automation, Linux. building: ZAP-LABS cyber range, kortex-shield WAF. learning: ethical hacking. exploring: LLMs for vulnerability discovery." width="100%" />
 </p>
 
 <br />
@@ -70,12 +70,6 @@
   <a href="https://github.com/balaji87-z/kortex-shield/commits"><img src="https://img.shields.io/github/last-commit/balaji87-z/kortex-shield?label=LAST+COMMIT&style=for-the-badge&color=00FF41&labelColor=030806" alt="kortex-shield last commit" /></a>
   <a href="https://github.com/balaji87-z/kortex-shield"><img src="https://img.shields.io/github/languages/top/balaji87-z/kortex-shield?style=for-the-badge&color=00FF41&labelColor=030806" alt="kortex-shield top language" /></a>
   <a href="https://github.com/balaji87-z/kortex-shield"><img src="https://img.shields.io/github/repo-size/balaji87-z/kortex-shield?label=REPO+SIZE&style=for-the-badge&color=00FF41&labelColor=030806" alt="kortex-shield repository size" /></a>
-</p>
-
-<p align="center">
-  <img src="assets/project-recon.svg" alt="Recon Automation Toolkit — automation for reconnaissance during security research: automated target discovery; endpoint enumeration; scripting utilities." width="100%" />
-  <img src="assets/project-ai.svg" alt="AI Security Experiments — how AI models can assist vulnerability discovery: automation with LLMs; security workflow assistance; intelligent scanning concepts." width="100%" />
-  <img src="assets/project-cli.svg" alt="CLI Developer Tools — command-line utilities for everyday work: developer productivity; automation workflows; Linux scripting utilities." width="100%" />
 </p>
 
 <br />
