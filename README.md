@@ -5,13 +5,11 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&duration=3000&pause=1000&color=00FF41&center=true&vCenter=true&width=900&height=40&lines=Wake+up%2C+Neo...;Cybersecurity+Explorer;Automation+Builder;Linux+Enthusiast;Learning+Ethical+Hacking;Welcome+To+The+Matrix" alt="Cybersecurity Explorer · Automation Builder · Linux Enthusiast · Learning Ethical Hacking" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&duration=3000&pause=1000&color=00FF41&center=true&vCenter=true&width=900&height=40&lines=Wake+up%2C+Neo...;Security+Analyst;Building+ZAP-LABS%2C+a+web+security+cyber+range;Building+kortex-shield%2C+a+WAF+measured+against+OWASP+CRS;Welcome+To+The+Matrix" alt="Security Analyst · Building ZAP-LABS, a web security cyber range · Building kortex-shield, a WAF measured against OWASP CRS" />
 </p>
 
 <p align="center">
   <a href="https://github.com/balaji87-z"><img src="https://komarev.com/ghpvc/?username=balaji87-z&label=PROFILE+VIEWS&color=00FF41&style=for-the-badge" alt="Profile views" /></a>
-  <a href="https://github.com/balaji87-z?tab=followers"><img src="https://img.shields.io/github/followers/balaji87-z?label=FOLLOWERS&style=for-the-badge&color=00FF41&labelColor=030806&logo=github&logoColor=00FF41" alt="Followers" /></a>
-  <a href="https://github.com/balaji87-z?tab=repositories"><img src="https://img.shields.io/github/stars/balaji87-z?label=STARS&style=for-the-badge&color=00FF41&labelColor=030806&logo=starship&logoColor=00FF41" alt="Total stars" /></a>
 </p>
 
 <p align="center">
@@ -20,7 +18,6 @@
   <a href="#zaplabs"><img src="assets/nav-zaplabs.svg" alt="zaplabs" width="158" /></a>
   <a href="#projects"><img src="assets/nav-projects.svg" alt="projects" width="158" /></a>
   <br />
-  <a href="#pill"><img src="assets/nav-pill.svg" alt="pill" width="158" /></a>
   <a href="#telemetry"><img src="assets/nav-telemetry.svg" alt="telemetry" width="158" /></a>
   <a href="#snake"><img src="assets/nav-snake.svg" alt="snake" width="158" /></a>
   <a href="#network"><img src="assets/nav-network.svg" alt="network" width="158" /></a>
@@ -32,7 +29,7 @@
 <img src="assets/sec-01.svg" alt="01 — System Initialization" width="100%" />
 
 <p align="center">
-  <img src="assets/terminal.svg" alt="Terminal boot sequence. user: Kavin Harish. role: cybersecurity learner. motto: Break. Build. Secure. focus: AI × Security, automation, Linux. building: ZAP-LABS cyber range, kortex-shield WAF. learning: ethical hacking. exploring: LLMs for vulnerability discovery." width="100%" />
+  <img src="assets/terminal.svg" alt="Terminal boot sequence. user: Kavin Harish. role: Security Analyst. motto: Break. Build. Secure. focus: AI × Security, automation, Linux. building: ZAP-LABS cyber range, kortex-shield WAF. measuring: WAF baselines against OWASP CRS. exploring: LLMs for vulnerability discovery." width="100%" />
 </p>
 
 <br />
@@ -74,51 +71,14 @@
 
 <br />
 
-<a name="pill"></a>
-<img src="assets/sec-05.svg" alt="05 — Choose Your Pill" width="100%" />
-
-<details>
-<summary><img src="assets/pill-red.svg" alt="Take the red pill — stay in Wonderland and see how deep the rabbit hole goes." width="94%" /></summary>
-<br />
-
-> *You stay in Wonderland, and I show you how deep the rabbit hole goes.*
-
-```bash
-$ ls ~/rabbit-hole
-```
-
-* 🛡️ [kortex-shield](https://github.com/balaji87-z/kortex-shield) — follow the WAF build, step by step
-* 📦 [All repositories](https://github.com/balaji87-z?tab=repositories) — everything else in the lab
-* ⭐ [Follow](https://github.com/balaji87-z) — get the next transmission
-
-</details>
-
-<details>
-<summary><img src="assets/pill-blue.svg" alt="Take the blue pill — the story ends. Believe whatever you want to believe." width="94%" /></summary>
-<br />
-
-> *The story ends. You wake up in your bed and believe whatever you want to believe.*
-
-```bash
-$ exit
-Connection to the Matrix closed.
-```
-
-[⬆ Back to the top](#top)
-
-</details>
-
-<br />
-
 <a name="telemetry"></a>
-<img src="assets/sec-06.svg" alt="06 — GitHub Telemetry" width="100%" />
+<img src="assets/sec-05.svg" alt="05 — GitHub Telemetry" width="100%" />
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/balaji87-z/balaji87-z/output/profile-3d-matrix.svg" alt="3D contribution graph with language and activity breakdown" width="100%" />
 </p>
 
 <p align="center">
-  <img height="172" src="https://github-readme-stats.vercel.app/api?username=balaji87-z&show_icons=true&bg_color=030806&title_color=00FF41&icon_color=00FF41&text_color=B6FFC8&ring_color=00FF41&border_color=00FF41&border_radius=12&rank_icon=github" alt="GitHub stats" />
   <img height="172" src="https://github-readme-stats.vercel.app/api/top-langs/?username=balaji87-z&layout=compact&bg_color=030806&title_color=00FF41&text_color=B6FFC8&border_color=00FF41&border_radius=12" alt="Most used languages" />
 </p>
 
@@ -126,22 +86,10 @@ Connection to the Matrix closed.
   <img src="https://streak-stats.demolab.com?user=balaji87-z&background=030806&border=00FF41&border_radius=12&ring=00FF41&fire=00FF41&currStreakLabel=00FF41&sideLabels=00FF41&currStreakNum=B6FFC8&sideNums=B6FFC8&dates=0A8F2E&stroke=00FF41" alt="Contribution streak" />
 </p>
 
-<details>
-<summary><b>📈 Open the full profile breakdown</b></summary>
-<br />
-<p align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=balaji87-z&theme=chartreuse_dark" alt="Profile details and contribution graph" width="100%" />
-</p>
-<p align="center">
-  <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=balaji87-z&theme=chartreuse_dark" alt="Repositories per language" />
-  <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=balaji87-z&theme=chartreuse_dark" alt="Contribution stats" />
-</p>
-</details>
-
 <br />
 
 <a name="snake"></a>
-<img src="assets/sec-07.svg" alt="07 — Contribution Snake" width="100%" />
+<img src="assets/sec-06.svg" alt="06 — Contribution Snake" width="100%" />
 
 <p align="center">
   <picture>
@@ -153,17 +101,8 @@ Connection to the Matrix closed.
 
 <br />
 
-<a name="transmission"></a>
-<img src="assets/sec-08.svg" alt="08 — Incoming Transmission" width="100%" />
-
-<p align="center">
-  <img src="assets/transmission.svg" alt="Incoming transmission: Break. Build. Secure. / Trust nothing. Verify everything. / Measure first. Claim later. / Automate the boring. Investigate the strange. / Wake up, Neo..." width="100%" />
-</p>
-
-<br />
-
 <a name="network"></a>
-<img src="assets/sec-09.svg" alt="09 — Network" width="100%" />
+<img src="assets/sec-07.svg" alt="07 — Network" width="100%" />
 
 <p align="center">
   <a href="https://github.com/balaji87-z"><img src="assets/uplink.svg" alt="Connection established: github.com/balaji87-z, kavinharish07@gmail.com" width="100%" /></a>
@@ -176,6 +115,7 @@ Connection to the Matrix closed.
 </p>
 
 <p align="center">
+  <a href="https://balaji87-z.github.io/portfolio/"><img src="assets/btn-portfolio.svg" alt="Portfolio" width="31%" /></a>
   <a href="mailto:kavinharish07@gmail.com"><img src="assets/btn-email.svg" alt="Email kavinharish07@gmail.com" width="48%" /></a>
 </p>
 

@@ -22,8 +22,6 @@ HI = "#B6FFC8"     # highlight
 MID = "#00B32C"
 DIM = "#0A5C22"
 BG = "#030806"
-RED = "#FF2D55"
-BLUE = "#2D8CFF"
 
 BASE_CSS = (
     ".m{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,"
@@ -412,11 +410,9 @@ SECTIONS = [
     ("02", "TECH STACK", "loaded modules", "cube"),
     ("03", "ZAP-LABS", "web security cyber range", "icosa"),
     ("04", "CURRENT PROJECTS", "active operations", "octa"),
-    ("05", "CHOOSE YOUR PILL", "red or blue", "tetra"),
-    ("06", "GITHUB TELEMETRY", "live signal", "icosa"),
-    ("07", "CONTRIBUTION SNAKE", "grid crawler", "cube"),
-    ("08", "INCOMING TRANSMISSION", "intercepted signal", "octa"),
-    ("09", "NETWORK", "open channels", "tetra"),
+    ("05", "GITHUB TELEMETRY", "live signal", "icosa"),
+    ("06", "CONTRIBUTION SNAKE", "grid crawler", "cube"),
+    ("07", "NETWORK", "open channels", "tetra"),
 ]
 
 
@@ -451,12 +447,12 @@ TERMINAL = [
     ("o", "> mounting /dev/curiosity .... [ OK ]"),
     ("p", "$ whoami"),
     ("o", "user    : Kavin Harish"),
-    ("o", "role    : cybersecurity learner"),
+    ("o", "role    : Security Analyst"),
     ("o", "motto   : Break. Build. Secure."),
     ("o", "focus   : AI × Security, automation, Linux"),
     ("p", "$ cat now.txt"),
     ("o", "building  -> ZAP-LABS cyber range, kortex-shield WAF"),
-    ("o", "learning  -> ethical hacking"),
+    ("o", "measuring -> WAF baselines against OWASP CRS"),
     ("o", "exploring -> LLMs for vulnerability discovery"),
 ]
 
@@ -505,7 +501,7 @@ def terminal():
              f'<g clip-path="url(#{cid})"><path d="{wave}" fill="none" stroke="{G}" stroke-width="2">'
              f'<animateTransform attributeName="transform" type="translate" dur="1.6s" repeatCount="indefinite" '
              f'values="802 304;862 304"/></path></g>')
-    for i, (k, v) in enumerate((("STATUS", "ACTIVE"), ("MODE", "LEARNING"), ("UPLINK", "STABLE"))):
+    for i, (k, v) in enumerate((("STATUS", "ACTIVE"), ("MODE", "BUILDING"), ("UPLINK", "STABLE"))):
         yy = 352 + i * 26
         body += (f'<circle cx="870" cy="{yy - 5}" r="4.5" fill="{G}" class="bl" style="animation-delay:{i * 0.35}s"/>'
                  f'<text x="886" y="{yy}" class="m" font-size="15" fill="{G}" opacity=".8" letter-spacing="2">{k}</text>'
@@ -623,44 +619,6 @@ def project(slug, num, title, tagline, bullets, shape, status):
                  f'<path d="M1136 120l14 9-14 9z" fill="{HI}" class="bl"/>')
     label = f"{title.title()} — {tagline}: " + "; ".join(bullets) + f". Status: {status.lower()}."
     write(f"project-{slug}.svg", doc(w, h, body, label))
-
-
-def pill(slug, color, dark, light, title, sub):
-    w, h = 1200, 150
-    gid, hid = uid("g"), uid("g")
-    defs = (f'<linearGradient id="{gid}" x1="0" y1="0" x2="0" y2="1">'
-            f'<stop offset="0" stop-color="{light}"/><stop offset=".45" stop-color="{color}"/>'
-            f'<stop offset=".85" stop-color="{dark}"/><stop offset="1" stop-color="{color}"/></linearGradient>'
-            f'<linearGradient id="{hid}" x1="0" y1="0" x2="0" y2="1">'
-            f'<stop offset="0" stop-color="#fff" stop-opacity=".85"/>'
-            f'<stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>')
-    body = f'<rect width="{w}" height="{h}" fill="url(#panel)"/>'
-    body += sheen(w, h, dur=8)
-    body += f'<ellipse cx="140" cy="128" rx="78" ry="9" fill="#000" opacity=".6"/>'
-    body += (f'<ellipse cx="140" cy="72" rx="105" ry="46" fill="{color}" filter="url(#gl2)" opacity=".55" '
-             f'class="pu"/>')
-    body += ('<g><animateTransform attributeName="transform" type="translate" dur="3.6s" repeatCount="indefinite" '
-             'values="0 0;0 -7;0 0" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/>'
-             '<g transform="rotate(-16 140 74)">'
-             f'<rect x="56" y="42" width="168" height="64" rx="32" fill="url(#{gid})"/>'
-             f'<rect x="56" y="42" width="168" height="64" rx="32" fill="none" stroke="{light}" stroke-width="1.5" '
-             f'opacity=".7"/>'
-             f'<path d="M140 43V105" stroke="{dark}" stroke-width="2" opacity=".55"/>'
-             f'<rect x="74" y="48" width="132" height="20" rx="10" fill="url(#{hid})"/>'
-             '<ellipse cx="84" cy="60" rx="7" ry="4" fill="#fff" opacity=".9"/>'
-             '</g></g>')
-    body += ext_text(title, 280, 76, 38, depth=6, ls=4, top=light, side_far=mix(dark, "#000000", .6),
-                     side_near=dark, glow=color)
-    body += f'<text x="282" y="112" class="m" font-size="18" fill="{light}" opacity=".9">{escape(sub)}</text>'
-    body += (f'<g class="pu"><text x="1118" y="82" class="m b" font-size="15" text-anchor="end" fill="{light}" '
-             f'letter-spacing="3">CLICK TO TOGGLE</text>'
-             f'<path d="M1134 68h26l-13 17z" fill="{light}"/></g>')
-    out = clip(w, h, 16, body) + (
-        f'<rect x="1.5" y="1.5" width="{w - 3}" height="{h - 3}" rx="16" fill="none" stroke="{color}" '
-        f'stroke-width="7" opacity=".14"/>'
-        f'<rect x="1.5" y="1.5" width="{w - 3}" height="{h - 3}" rx="16" fill="none" stroke="{color}" '
-        f'stroke-width="1.5" opacity=".7"/>')
-    write(f"pill-{slug}.svg", doc(w, h, out, f"{title.title()} — {sub}", defs=defs))
 
 
 EMAIL = "kavinharish07@gmail.com"
@@ -818,50 +776,6 @@ def zapchain():
     write("zaplabs-chain.svg", doc(w, h, clip(w, h, 16, body) + frame(w, h, 16), label, css=css))
 
 
-SIGNALS = [
-    "Break. Build. Secure.",
-    "Trust nothing. Verify everything.",
-    "Measure first. Claim later.",
-    "Automate the boring. Investigate the strange.",
-    "Wake up, Neo...",
-]
-
-
-def transmission():
-    w, h = 1200, 250
-    per = 4.0
-    cycle = per * len(SIGNALS)
-    share = 100 / len(SIGNALS)
-    css = (f"@keyframes sg{{0%{{opacity:0}}{share * .12:.2f}%,{share * .88:.2f}%{{opacity:1}}"
-           f"{share:.2f}%,100%{{opacity:0}}}}.sg{{opacity:0;animation:sg {cycle}s infinite}}")
-    body = f'<rect width="{w}" height="{h}" fill="url(#panel)"/>'
-    body += rain(w, h, seed=11, step=40, size=14, opacity=0.14)
-    # left: receiver dish drawn as a spinning solid inside pulsing rings
-    for i in range(3):
-        body += (f'<circle cx="140" cy="125" r="50" fill="none" stroke="{G}" stroke-width="2" opacity="0">'
-                 f'<animate attributeName="r" dur="3s" begin="{i}s" repeatCount="indefinite" values="50;112"/>'
-                 f'<animate attributeName="opacity" dur="3s" begin="{i}s" repeatCount="indefinite" '
-                 f'values=".7;0"/></circle>')
-    body += f'<circle cx="140" cy="125" r="64" fill="#03140A" stroke="{G}" stroke-width="1.5"/>'
-    body += wire("octa", 140, 125, 46, sw=1.7)
-    body += slab(280, 34, 876, 172, r=14, depth=10, fill="#040C07")
-    body += (f'<text x="308" y="70" class="m" font-size="14" fill="{G}" opacity=".75" letter-spacing="4">'
-             f'SIGNAL DECODED // ROTATING</text>')
-    body += eq_bars(1040, 76, count=8, seed=5, hmax=30)
-    for i, line in enumerate(SIGNALS):
-        delay = f'style="animation-delay:{n(i * per)}s"'
-        body += (f'<g class="sg" {delay}>'
-                 + ext_text(f"\u201c{line}\u201d", 308, 134, 27, depth=4, ls=1)
-                 + f'<text x="308" y="178" class="m" font-size="15" fill="{HI}" opacity=".85" '
-                   f'letter-spacing="3">TRANSMISSION {i + 1:02d} / {len(SIGNALS):02d}</text></g>')
-    # progress bar that refills for every line
-    body += (f'<rect x="700" y="166" width="428" height="6" rx="3" fill="{DIM}" opacity=".6"/>'
-             f'<rect x="700" y="166" height="6" rx="3" fill="{HI}"><animate attributeName="width" '
-             f'dur="{per}s" repeatCount="indefinite" values="0;428"/></rect>')
-    label = "Incoming transmission: " + " / ".join(SIGNALS)
-    write("transmission.svg", doc(w, h, clip(w, h, 16, body) + frame(w, h, 16), label, css=css))
-
-
 def button(name, label, icon_name=None, w=400, h=104, size=24, depth=9, aria=None):
     body = slab(6, 6, w - 6 - depth - 6, h - 6 - depth - 6, r=14, depth=depth, pulse=True)
     iw = w - 6 - depth - 6
@@ -905,7 +819,7 @@ def footer():
     write("footer.svg", doc(w, h, clip(w, h, 20, body) + frame(w, h, 20), "End of transmission", defs=defs))
 
 
-NAV = ["whoami", "stack", "zaplabs", "projects", "pill", "telemetry", "snake", "network"]
+NAV = ["whoami", "stack", "zaplabs", "projects", "telemetry", "snake", "network"]
 
 
 def main():
@@ -919,13 +833,11 @@ def main():
     zapchain()
     for p in PROJECTS:
         project(*p)
-    pill("red", RED, "#7A0018", "#FFC2CC", "TAKE THE RED PILL", "Stay in Wonderland and see how deep the rabbit hole goes.")
-    pill("blue", BLUE, "#062E73", "#C4DEFF", "TAKE THE BLUE PILL", "The story ends. Believe whatever you want to believe.")
-    transmission()
     uplink()
     button("btn-github", "GITHUB PROFILE", "github")
     button("btn-repos", "REPOSITORIES", "git")
     button("btn-kortex", "KORTEX-SHIELD", "shield")
+    button("btn-portfolio", "PORTFOLIO", "window")
     button("btn-email", EMAIL, "mail", w=620, aria=f"Email {EMAIL}")
     for name in NAV:
         button(f"nav-{name}", name.upper(), w=214, h=70, size=21, depth=6)
