@@ -667,6 +667,9 @@ def pill(slug, color, dark, light, title, sub):
     write(f"pill-{slug}.svg", doc(w, h, out, f"{title.title()} — {sub}", defs=defs))
 
 
+EMAIL = "kavinharish07@gmail.com"
+
+
 def uplink():
     w, h = 1200, 320
     body = f'<rect width="{w}" height="{h}" fill="url(#panel)"/>'
@@ -694,19 +697,20 @@ def uplink():
         body += (f'<circle cy="160" r="4.5" fill="{HI}"><animate attributeName="cx" dur="1.8s" '
                  f'begin="{i * 0.6}s" repeatCount="indefinite" values="452;548"/></circle>')
     body += slab(566, 44, 590, 222, r=14, depth=10, fill="#040C07")
-    body += (f'<text x="592" y="82" class="m" font-size="14" fill="{G}" opacity=".75" letter-spacing="4">'
+    body += (f'<text x="592" y="78" class="m" font-size="14" fill="{G}" opacity=".75" letter-spacing="4">'
              f'UPLINK // CHANNEL 01</text>')
-    body += ext_text("CONNECTION ESTABLISHED", 592, 132, 33, depth=5, ls=2)
-    body += (f'<text x="592" y="182" class="m b" font-size="25" fill="{HI}">&gt; github.com/balaji87-z'
+    body += ext_text("CONNECTION ESTABLISHED", 592, 124, 33, depth=5, ls=2)
+    body += (f'<text x="592" y="168" class="m b" font-size="23" fill="{HI}">&gt; github.com/balaji87-z</text>'
+             f'<text x="592" y="202" class="m b" font-size="23" fill="{HI}">&gt; {EMAIL}'
              f'<tspan class="bl" fill="{G}"> █</tspan></text>')
     for i, (k, v) in enumerate((("STATUS", "OPEN"), ("SIGNAL", "STRONG"))):
         x = 592 + i * 220
-        body += (f'<circle cx="{x + 5}" cy="227" r="5" fill="{G}" class="bl" style="animation-delay:{i * 0.4}s"/>'
-                 f'<text x="{x + 20}" y="232" class="m" font-size="15" fill="{G}" letter-spacing="2">{k} '
+        body += (f'<circle cx="{x + 5}" cy="237" r="5" fill="{G}" class="bl" style="animation-delay:{i * 0.4}s"/>'
+                 f'<text x="{x + 20}" y="242" class="m" font-size="15" fill="{G}" letter-spacing="2">{k} '
                  f'<tspan fill="{HI}" class="b">{v}</tspan></text>')
     body += eq_bars(1046, 240, count=8, seed=99, hmax=42)
     write("uplink.svg", doc(w, h, clip(w, h, 16, body) + frame(w, h, 16),
-                            "Connection established: github.com/balaji87-z"))
+                            f"Connection established: github.com/balaji87-z, {EMAIL}"))
 
 
 ZAP_STATS = [("20", "LIVE TARGETS"), ("10", "VULN CLASSES"), ("04", "SEC TIERS PER LAB")]
@@ -862,7 +866,7 @@ def transmission():
     write("transmission.svg", doc(w, h, clip(w, h, 16, body) + frame(w, h, 16), label, css=css))
 
 
-def button(name, label, icon_name=None, w=400, h=104, size=24, depth=9):
+def button(name, label, icon_name=None, w=400, h=104, size=24, depth=9, aria=None):
     body = slab(6, 6, w - 6 - depth - 6, h - 6 - depth - 6, r=14, depth=depth, pulse=True)
     iw = w - 6 - depth - 6
     ih = h - 6 - depth - 6
@@ -877,7 +881,7 @@ def button(name, label, icon_name=None, w=400, h=104, size=24, depth=9):
         body += f'<path d="M{iw - 30} {n(cy - 10)}l14 10-14 10z" fill="{HI}" class="pu"/>'
     else:
         body += ext_text(label, 6 + iw / 2, cy + size * 0.35, size, depth=3, ls=2, anchor="middle")
-    write(f"{name}.svg", doc(w, h, body, label.title()))
+    write(f"{name}.svg", doc(w, h, body, aria or label.title()))
 
 
 def footer():
@@ -926,6 +930,7 @@ def main():
     button("btn-github", "GITHUB PROFILE", "github")
     button("btn-repos", "REPOSITORIES", "git")
     button("btn-kortex", "KORTEX-SHIELD", "shield")
+    button("btn-email", EMAIL, "mail", w=620, aria=f"Email {EMAIL}")
     for name in NAV:
         button(f"nav-{name}", name.upper(), w=214, h=70, size=21, depth=6)
     button("btn-top", "BACK TO TOP", w=300, h=70, size=21, depth=6)

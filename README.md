@@ -172,13 +172,17 @@ Connection to the Matrix closed.
 <img src="assets/sec-09.svg" alt="09 — Network" width="100%" />
 
 <p align="center">
-  <a href="https://github.com/balaji87-z"><img src="assets/uplink.svg" alt="Connection established: github.com/balaji87-z" width="100%" /></a>
+  <a href="https://github.com/balaji87-z"><img src="assets/uplink.svg" alt="Connection established: github.com/balaji87-z, kavinharish07@gmail.com" width="100%" /></a>
 </p>
 
 <p align="center">
   <a href="https://github.com/balaji87-z"><img src="assets/btn-github.svg" alt="GitHub profile" width="31%" /></a>
   <a href="https://github.com/balaji87-z?tab=repositories"><img src="assets/btn-repos.svg" alt="Repositories" width="31%" /></a>
   <a href="https://github.com/balaji87-z/kortex-shield"><img src="assets/btn-kortex.svg" alt="kortex-shield" width="31%" /></a>
+</p>
+
+<p align="center">
+  <a href="mailto:kavinharish07@gmail.com"><img src="assets/btn-email.svg" alt="Email kavinharish07@gmail.com" width="48%" /></a>
 </p>
 
 <p align="center">
