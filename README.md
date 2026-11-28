@@ -1,11 +1,11 @@
 <a name="top"></a>
 
 <p align="center">
-  <a href="https://github.com/balaji87-z"><img src="assets/hero.svg" alt="Kavin Harish — Break. Build. Secure. AI × Security, automation, Linux." width="100%" /></a>
+  <a href="https://github.com/balaji87-z"><img src="assets/hero.svg" alt="Kavin Harish — Break. Build. Secure. AI × Security, automation, Linux. Open to work." width="100%" /></a>
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&duration=3000&pause=1000&color=00FF41&center=true&vCenter=true&width=900&height=40&lines=Wake+up%2C+Neo...;Security+Analyst;Building+ZAP-LABS%2C+a+web+security+cyber+range;Building+kortex-shield%2C+a+WAF+measured+against+OWASP+CRS;Welcome+To+The+Matrix" alt="Security Analyst · Building ZAP-LABS, a web security cyber range · Building kortex-shield, a WAF measured against OWASP CRS" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&duration=3000&pause=1000&color=00FF41&center=true&vCenter=true&width=900&height=40&lines=Wake+up%2C+Neo...;Security+Analyst;Open+to+work;Building+ZAP-LABS%2C+a+web+security+cyber+range;Building+kortex-shield%2C+a+WAF+measured+against+OWASP+CRS;Welcome+To+The+Matrix" alt="Security Analyst · Open to work · Building ZAP-LABS, a web security cyber range · Building kortex-shield, a WAF measured against OWASP CRS" />
 </p>
 
 <p align="center">
@@ -29,7 +29,7 @@
 <img src="assets/sec-01.svg" alt="01 — System Initialization" width="100%" />
 
 <p align="center">
-  <img src="assets/terminal.svg" alt="Terminal boot sequence. user: Kavin Harish. role: Security Analyst. motto: Break. Build. Secure. focus: AI × Security, automation, Linux. building: ZAP-LABS cyber range, kortex-shield WAF. measuring: WAF baselines against OWASP CRS. exploring: LLMs for vulnerability discovery." width="100%" />
+  <img src="assets/terminal.svg" alt="Terminal boot sequence. user: Kavin Harish. role: Security Analyst. status: open to work. focus: AI × Security, automation, Linux. building: ZAP-LABS cyber range, kortex-shield WAF. measuring: WAF baselines against OWASP CRS. exploring: LLMs for vulnerability discovery." width="100%" />
 </p>
 
 <br />
@@ -110,6 +110,10 @@
 
 <p align="center">
   <a href="https://github.com/balaji87-z"><img src="assets/uplink.svg" alt="Connection established: github.com/balaji87-z, kavinharish07@gmail.com" width="100%" /></a>
+</p>
+
+<p align="center">
+  <a href="mailto:kavinharish07@gmail.com"><img src="assets/open-to-work.svg" alt="Open to work. Security Analyst. Email kavinharish07@gmail.com" width="100%" /></a>
 </p>
 
 <p align="center">

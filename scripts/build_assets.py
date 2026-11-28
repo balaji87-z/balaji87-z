@@ -398,11 +398,11 @@ def hero():
     body += brackets(22, 22, w - 44, h - 44, s=26)
     body += (f'<text x="60" y="58" class="m b" font-size="15" fill="{G}" letter-spacing="2">'
              f'root@matrix:~$ ./whoami<tspan class="bl" fill="{HI}"> █</tspan></text>')
-    body += (f'<circle cx="1052" cy="53" r="6" fill="{G}" class="bl"/>'
-             f'<circle cx="1052" cy="53" r="11" fill="{G}" opacity=".25" class="pu"/>'
-             f'<text x="1070" y="58" class="m b" font-size="15" fill="{G}" letter-spacing="3">ONLINE</text>')
+    body += (f'<circle cx="978" cy="53" r="6" fill="{G}" class="bl"/>'
+             f'<circle cx="978" cy="53" r="11" fill="{G}" opacity=".25" class="pu"/>'
+             f'<text x="996" y="58" class="m b" font-size="15" fill="{HI}" letter-spacing="3">OPEN TO WORK</text>')
     write("hero.svg", doc(w, h, clip(w, h, 20, body) + frame(w, h, 20),
-                          f"{NAME} — Break. Build. Secure. AI × Security, automation, Linux.", defs=defs))
+                          f"{NAME} — Break. Build. Secure. AI × Security, automation, Linux. Open to work.", defs=defs))
 
 
 SECTIONS = [
@@ -448,7 +448,7 @@ TERMINAL = [
     ("p", "$ whoami"),
     ("o", "user    : Kavin Harish"),
     ("o", "role    : Security Analyst"),
-    ("o", "motto   : Break. Build. Secure."),
+    ("o", "status  : open to work"),
     ("o", "focus   : AI × Security, automation, Linux"),
     ("p", "$ cat now.txt"),
     ("o", "building  -> ZAP-LABS cyber range, kortex-shield WAF"),
@@ -501,7 +501,7 @@ def terminal():
              f'<g clip-path="url(#{cid})"><path d="{wave}" fill="none" stroke="{G}" stroke-width="2">'
              f'<animateTransform attributeName="transform" type="translate" dur="1.6s" repeatCount="indefinite" '
              f'values="802 304;862 304"/></path></g>')
-    for i, (k, v) in enumerate((("STATUS", "ACTIVE"), ("MODE", "BUILDING"), ("UPLINK", "STABLE"))):
+    for i, (k, v) in enumerate((("STATUS", "OPEN TO WORK"), ("MODE", "BUILDING"), ("UPLINK", "STABLE"))):
         yy = 352 + i * 26
         body += (f'<circle cx="870" cy="{yy - 5}" r="4.5" fill="{G}" class="bl" style="animation-delay:{i * 0.35}s"/>'
                  f'<text x="886" y="{yy}" class="m" font-size="15" fill="{G}" opacity=".8" letter-spacing="2">{k}</text>'
@@ -710,8 +710,8 @@ def uplink():
     body += (f'<text x="592" y="168" class="m b" font-size="23" fill="{HI}">&gt; github.com/balaji87-z</text>'
              f'<text x="592" y="202" class="m b" font-size="23" fill="{HI}">&gt; {EMAIL}'
              f'<tspan class="bl" fill="{G}"> █</tspan></text>')
-    for i, (k, v) in enumerate((("STATUS", "OPEN"), ("SIGNAL", "STRONG"))):
-        x = 592 + i * 220
+    for i, (k, v) in enumerate((("STATUS", "OPEN TO WORK"), ("SIGNAL", "STRONG"))):
+        x = 592 + i * 262
         body += (f'<circle cx="{x + 5}" cy="237" r="5" fill="{G}" class="bl" style="animation-delay:{i * 0.4}s"/>'
                  f'<text x="{x + 20}" y="242" class="m" font-size="15" fill="{G}" letter-spacing="2">{k} '
                  f'<tspan fill="{HI}" class="b">{v}</tspan></text>')
@@ -829,6 +829,31 @@ def zapchain():
     write("zaplabs-chain.svg", doc(w, h, clip(w, h, 16, body) + frame(w, h, 16), label, css=css))
 
 
+def open_to_work():
+    w, h = 1200, 150
+    body = slab(8, 8, 1172, 122, r=16, depth=12, pulse=True)
+    cid = uid("c")
+    body += (f'<defs><clipPath id="{cid}"><rect x="8" y="8" width="1172" height="122" rx="16"/></clipPath></defs>'
+             f'<g clip-path="url(#{cid})">{rain(w, 130, seed=64, step=40, size=14, opacity=0.1)}'
+             f'{sheen(w, 138, dur=7)}</g>')
+    # beacon: rings leaving a steady light
+    bx, by = 84, 69
+    for i in range(3):
+        body += (f'<circle cx="{bx}" cy="{by}" r="12" fill="none" stroke="{G}" stroke-width="2" opacity="0">'
+                 f'<animate attributeName="r" dur="2.4s" begin="{i * 0.8}s" repeatCount="indefinite" values="12;46"/>'
+                 f'<animate attributeName="opacity" dur="2.4s" begin="{i * 0.8}s" repeatCount="indefinite" '
+                 f'values=".9;0"/></circle>')
+    body += (f'<circle cx="{bx}" cy="{by}" r="20" fill="{G}" opacity=".25" class="pu"/>'
+             f'<circle cx="{bx}" cy="{by}" r="12" fill="url(#top)"/>')
+    body += ext_text("OPEN TO WORK", 158, 72, 44, depth=6, ls=5)
+    body += (f'<text x="160" y="106" class="m" font-size="18" fill="{HI}">Security Analyst'
+             f'<tspan fill="{G}">  //  </tspan>{EMAIL}</text>')
+    body += (f'<text x="1152" y="62" class="m b pu" font-size="15" text-anchor="end" fill="{G}" '
+             f'letter-spacing="2">CLICK TO EMAIL</text>'
+             f'<path d="M1136 76l14 9-14 9z" fill="{HI}" class="bl"/>')
+    write("open-to-work.svg", doc(w, h, body, f"Open to work. Security Analyst. Email {EMAIL}"))
+
+
 def button(name, label, icon_name=None, w=400, h=104, size=24, depth=9, aria=None):
     body = slab(6, 6, w - 6 - depth - 6, h - 6 - depth - 6, r=14, depth=depth, pulse=True)
     iw = w - 6 - depth - 6
@@ -888,6 +913,7 @@ def main():
     for p in PROJECTS:
         project(*p)
     uplink()
+    open_to_work()
     button("btn-github", "GITHUB PROFILE", "github")
     button("btn-repos", "REPOSITORIES", "git")
     button("btn-kortex", "KORTEX-SHIELD", "shield")
