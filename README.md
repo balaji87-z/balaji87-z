@@ -15,8 +15,8 @@
 <p align="center">
   <a href="#whoami"><img src="assets/nav-whoami.svg" alt="whoami" width="158" /></a>
   <a href="#stack"><img src="assets/nav-stack.svg" alt="stack" width="158" /></a>
-  <a href="#zaplabs"><img src="assets/nav-zaplabs.svg" alt="zaplabs" width="158" /></a>
-  <a href="#projects"><img src="assets/nav-projects.svg" alt="projects" width="158" /></a>
+  <a href="#zaplabs"><img src="assets/nav-zaplabs.svg" alt="ZAP-LABS" width="158" /></a>
+  <a href="#kortex"><img src="assets/nav-kortex.svg" alt="kortex-shield" width="158" /></a>
   <br />
   <a href="#telemetry"><img src="assets/nav-telemetry.svg" alt="telemetry" width="158" /></a>
   <a href="#snake"><img src="assets/nav-snake.svg" alt="snake" width="158" /></a>
@@ -60,8 +60,8 @@
 
 <br />
 
-<a name="projects"></a>
-<img src="assets/sec-04.svg" alt="04 — Current Projects" width="100%" />
+<a name="kortex"></a>
+<img src="assets/sec-04.svg" alt="04 — kortex-shield" width="100%" />
 
 <p align="center">
   <a href="https://github.com/balaji87-z/kortex-shield"><img src="assets/project-kortex.svg" alt="kortex-shield — a web application firewall built to a checkable standard: evaluation harness with frozen attack and benign corpora; baselines measured against OWASP CRS; proxy engine built on Coraza. 1,054 attack samples, 4 attack families, 2 engines compared." width="100%" /></a>

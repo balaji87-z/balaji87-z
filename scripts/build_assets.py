@@ -22,8 +22,6 @@ ICONS = json.loads((ROOT / "scripts" / "icons.json").read_text())
 
 G = "#00FF41"      # matrix green
 HI = "#B6FFC8"     # highlight
-MID = "#00B32C"
-DIM = "#0A5C22"
 BG = "#030806"
 
 # Every generator below draws in matrix green. A section gets its own colour by
@@ -118,6 +116,16 @@ def n(v):
 def mix(c1, c2, t):
     a, b = _rgb(c1), _rgb(c2)
     return "#" + "".join(f"{round(x + (y - x) * t):02X}" for x, y in zip(a, b))
+
+
+PROPER = {"Github": "GitHub", "Zap-labs": "ZAP-LABS", "Zaplabs": "ZAP-LABS", "Kortex-shield": "kortex-shield",
+          "Kortex": "kortex-shield", "Whoami": "whoami", "Sql": "SQL", "Xss": "XSS", "Ssrf": "SSRF", "Jwt": "JWT"}
+
+
+def spoken(text, sentence=False):
+    """Display text (usually capitals) as it should read in a label for screen readers."""
+    words = [PROPER.get(w.capitalize(), w.lower() if sentence else w.capitalize()) for w in text.split(" ")]
+    return " ".join(words)
 
 
 def doc(w, h, body, label, css="", defs=""):
@@ -466,7 +474,7 @@ SECTIONS = [
     ("01", "SYSTEM INITIALIZATION", "boot sequence  /  whoami", "icosa", "mint"),
     ("02", "TECH STACK", "loaded modules", "cube", "aqua"),
     ("03", "ZAP-LABS", "web security cyber range", "icosa", "sky"),
-    ("04", "CURRENT PROJECTS", "active operations", "octa", "blue"),
+    ("04", "KORTEX-SHIELD", "web application firewall", "octa", "blue"),
     ("05", "GITHUB TELEMETRY", "live signal", "icosa", "indigo"),
     ("06", "CONTRIBUTION SNAKE", "grid crawler", "cube", "violet"),
     ("07", "NETWORK", "open channels", "tetra", "purple"),
@@ -494,7 +502,7 @@ def section(num, title, sub, shape):
              f'<animate attributeName="x" dur="4s" repeatCount="indefinite" values="24;1046;24"/></rect>'
              f'<rect y="88" width="130" height="10" rx="5" fill="{G}" opacity=".25">'
              f'<animate attributeName="x" dur="4s" repeatCount="indefinite" values="24;1046;24"/></rect>')
-    write(f"sec-{num}.svg", doc(w, h, clip(w, h, 14, body) + frame(w, h, 14), f"{num} — {title.title()}"))
+    write(f"sec-{num}.svg", doc(w, h, clip(w, h, 14, body) + frame(w, h, 14), f"{num} — {spoken(title)}"))
 
 
 TERMINAL = [
@@ -668,7 +676,7 @@ def modules():
             body += icon(icon_name, x + 22, y - 17, 22, color=HI, glow=False)
             body += f'<text x="{x + 58}" y="{y}" class="m" font-size="18" fill="{G}">{escape(name)}</text>'
     label = "Loaded modules. " + " ".join(
-        f"{title.title()}: " + ", ".join(name for name, _ in items) + "." for title, items in MODULES)
+        f"{spoken(title)}: " + ", ".join(name for name, _ in items) + "." for title, items in MODULES)
     write("stack-modules.svg", doc(w, h, clip(w, h, 16, body) + frame(w, h, 16), label))
 
 
@@ -726,7 +734,7 @@ def project(slug, num, title, tagline, bullets, shape, status, metrics=()):
         tx = n(x + 18 + num_w + 16)
         body += (f'<text class="m b" font-size="15" fill="{HI}" letter-spacing="2">'
                  f'<tspan x="{tx}" y="268">{first}</tspan><tspan x="{tx}" y="289">{rest}</tspan></text>')
-    label = f"{title.title()} — {tagline}: " + "; ".join(bullets) + f". Status: {status.lower()}."
+    label = f"{spoken(title)} — {tagline}: " + "; ".join(bullets) + f". Status: {status.lower()}."
     if metrics:
         label += " " + ", ".join(f"{v.lstrip('0')} {c.lower()}" for v, c in metrics) + "."
     write(f"project-{slug}.svg", doc(w, h, body, label))
@@ -882,8 +890,8 @@ def zapchain():
                  f'style="animation-delay:-{n(i * 0.23)}s"/>'
                  f'<text x="{x + 34}" y="{yy + 23}" class="m b" font-size="14" fill="{HI}" '
                  f'letter-spacing=".5">{name}</text>')
-    label = ("ZAP-LABS attack chain: " + ", ".join(c.lower() for c in ZAP_CHAIN) + ". Vulnerability classes: "
-             + ", ".join(c.lower() for c in ZAP_CLASSES) + ".")
+    label = ("ZAP-LABS attack chain: " + ", ".join(spoken(c, True) for c in ZAP_CHAIN) + ". Vulnerability classes: "
+             + ", ".join(spoken(c, True) for c in ZAP_CLASSES) + ".")
     write("zaplabs-chain.svg", doc(w, h, clip(w, h, 16, body) + frame(w, h, 16), label, css=css))
 
 
@@ -927,7 +935,7 @@ def button(name, label, icon_name=None, w=400, h=104, size=24, depth=9, aria=Non
         body += f'<path d="M{iw - 30} {n(cy - 10)}l14 10-14 10z" fill="{HI}" class="pu"/>'
     else:
         body += ext_text(label, 6 + iw / 2, cy + size * 0.35, size, depth=3, ls=2, anchor="middle")
-    write(f"{name}.svg", doc(w, h, body, aria or label.title()))
+    write(f"{name}.svg", doc(w, h, body, aria or spoken(label)))
 
 
 def footer():
@@ -956,7 +964,7 @@ def footer():
 
 
 # one jump button per section, in the order of SECTIONS
-NAV = ["whoami", "stack", "zaplabs", "projects", "telemetry", "snake", "network"]
+NAV = ["whoami", "stack", "zaplabs", "kortex", "telemetry", "snake", "network"]
 
 
 def sync_widgets(colour):
@@ -967,7 +975,7 @@ def sync_widgets(colour):
             line = re.sub(rf"(?<=[?&]){key}=[0-9A-Fa-f]{{6}}", f"{key}={tint(base, name)[1:]}", line)
         return line
 
-    telemetry, snake, projects = colour["telemetry"], colour["snake"], colour["projects"]
+    telemetry, snake, projects = colour["telemetry"], colour["snake"], colour["kortex"]
     readme = ROOT / "README.md"
     lines = readme.read_text().split("\n")
     for i, line in enumerate(lines):
@@ -1019,7 +1027,7 @@ def main():
     with theme(colour["zaplabs"]):
         zaplabs()
         zapchain()
-    with theme(colour["projects"]):
+    with theme(colour["kortex"]):
         for p in PROJECTS:
             project(*p)
     with theme(colour["network"]):
@@ -1036,7 +1044,24 @@ def main():
     sync_widgets(colour)
     total = sum(f.stat().st_size for f in OUT.glob("*.svg"))
     print(f"wrote {len(list(OUT.glob('*.svg')))} files, {total / 1024:.0f} KB")
+    problems = check_readme()
+    for problem in problems:
+        print("README:", problem)
+    return 1 if problems else 0
+
+
+def check_readme():
+    """README.md and assets/ must agree: no missing or unused artwork, no dead jump links."""
+    text = (ROOT / "README.md").read_text()
+    used = set(re.findall(r'"assets/([^"]+)"', text))
+    have = {f.name for f in OUT.glob("*.svg")}
+    anchors = set(re.findall(r'<a name="([^"]+)"', text))
+    problems = [f"missing image assets/{name}" for name in sorted(used - have)]
+    problems += [f"assets/{name} is not shown" for name in sorted(have - used)]
+    problems += [f"jump link #{name} has no target" for name in sorted(set(re.findall(r'href="#([^"]+)"', text)) - anchors)]
+    problems += [f"no jump button for section #{name}" for name in NAV if name not in anchors]
+    return problems
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
