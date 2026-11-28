@@ -68,9 +68,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/balaji87-z/kortex-shield/commits"><img src="https://img.shields.io/github/last-commit/balaji87-z/kortex-shield?label=LAST+COMMIT&style=for-the-badge&color=00FF41&labelColor=030806" alt="kortex-shield last commit" /></a>
-  <a href="https://github.com/balaji87-z/kortex-shield"><img src="https://img.shields.io/github/languages/top/balaji87-z/kortex-shield?style=for-the-badge&color=00FF41&labelColor=030806" alt="kortex-shield top language" /></a>
-  <a href="https://github.com/balaji87-z/kortex-shield"><img src="https://img.shields.io/github/repo-size/balaji87-z/kortex-shield?label=REPO+SIZE&style=for-the-badge&color=00FF41&labelColor=030806" alt="kortex-shield repository size" /></a>
+  <a href="https://github.com/balaji87-z/kortex-shield/commits"><img src="https://img.shields.io/github/last-commit/balaji87-z/kortex-shield?label=LAST+COMMIT&style=for-the-badge&color=5C85FF&labelColor=04060B" alt="kortex-shield last commit" /></a>
+  <a href="https://github.com/balaji87-z/kortex-shield"><img src="https://img.shields.io/github/languages/top/balaji87-z/kortex-shield?style=for-the-badge&color=5C85FF&labelColor=04060B" alt="kortex-shield top language" /></a>
+  <a href="https://github.com/balaji87-z/kortex-shield"><img src="https://img.shields.io/github/repo-size/balaji87-z/kortex-shield?label=REPO+SIZE&style=for-the-badge&color=5C85FF&labelColor=04060B" alt="kortex-shield repository size" /></a>
 </p>
 
 <br />
@@ -83,11 +83,11 @@
 </p>
 
 <p align="center">
-  <img height="172" src="https://github-readme-stats.vercel.app/api/top-langs/?username=balaji87-z&layout=compact&bg_color=08040C&title_color=B37DFF&text_color=E9DAFF&border_color=B37DFF&border_radius=12" alt="Most used languages" />
+  <img height="172" src="https://github-readme-stats.vercel.app/api/top-langs/?username=balaji87-z&layout=compact&bg_color=05040C&title_color=8C7AFF&text_color=DED9FF&border_color=8C7AFF&border_radius=12" alt="Most used languages" />
 </p>
 
 <p align="center">
-  <img src="https://streak-stats.demolab.com?user=balaji87-z&background=08040C&border=B37DFF&border_radius=12&ring=B37DFF&fire=B37DFF&currStreakLabel=B37DFF&sideLabels=B37DFF&currStreakNum=E9DAFF&sideNums=E9DAFF&dates=9555F0&stroke=B37DFF" alt="Contribution streak" />
+  <img src="https://streak-stats.demolab.com?user=balaji87-z&background=05040C&border=8C7AFF&border_radius=12&ring=8C7AFF&fire=8C7AFF&currStreakLabel=8C7AFF&sideLabels=8C7AFF&currStreakNum=DED9FF&sideNums=DED9FF&dates=6853F0&stroke=8C7AFF" alt="Contribution streak" />
 </p>
 
 <br />

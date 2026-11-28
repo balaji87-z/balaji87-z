@@ -28,17 +28,23 @@ BG = "#030806"
 
 # Every generator below draws in matrix green. A section gets its own colour by
 # running inside `with theme(...)`, which re-tints the finished SVG: each green
-# keeps its lightness and takes the theme's hue. Red, amber and green repeat the
-# portfolio's Break / Build / Secure colours.
+# keeps its lightness and takes the theme's hue.
+#
+# The colours are one sweep around the wheel, in page order, so each section is
+# a short step from the one above it: green at the banner, through blue, to
+# pink at the footer.
 THEMES = {
     "green": G,
-    "cyan": "#2DE2FF",
-    "amber": "#FFB547",
-    "red": "#FF4D5E",
-    "violet": "#B37DFF",
-    "pink": "#FF5FD2",
-    "blue": "#6A9CFF",
+    "mint": "#00FFAA",
+    "aqua": "#00EAFF",
+    "sky": "#33AAFF",
+    "blue": "#5C85FF",
+    "indigo": "#8C7AFF",
+    "violet": "#B870FF",
+    "purple": "#E95CFF",
+    "pink": "#FF61D0",
 }
+FOOTER_THEME = "pink"
 _theme = "green"
 
 
@@ -73,12 +79,6 @@ def tint(color, name):
     l = min(1.0, l + (tl - 0.5) * (1 - abs(2 * l - 1)))
     return "#" + "".join(f"{round(v * 255):02X}" for v in colorsys.hls_to_rgb(th, l, sat * ts))
 
-
-MOTTO = (("Break.", THEMES["red"]), ("Build.", THEMES["amber"]), ("Secure.", G))
-
-
-def motto_spans(upper=False):
-    return " ".join(f'<tspan fill="{keep(c)}">{w.upper() if upper else w.lower()}</tspan>' for w, c in MOTTO)
 
 BASE_CSS = (
     ".m{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,"
@@ -447,11 +447,7 @@ def hero():
     body += ext_text(NAME.upper(), 600, 212, 104, depth=13, cls="s x", anchor="middle", dx=1.1, dy=1.1,
                      extra='transform="translate(600 0) scale(.83 1) translate(-600 0)"', glow_filter="gl2",
                      glow_cls="pu", side_far="#011F09", side_near="#037020")
-    body += ext_text("BREAK. BUILD. SECURE.", 600, 278, 27, depth=3, anchor="middle", ls=9, top="none",
-                     glow=None, side_far="#0B0F0D", side_near="#222B26")
-    motto = ('<text x="600" y="278" class="m b" font-size="27" text-anchor="middle" letter-spacing="9"{}>'
-             + motto_spans(upper=True) + "</text>")
-    body += motto.format(' filter="url(#gl)" opacity=".8"') + motto.format("")
+    body += ext_text("BREAK. BUILD. SECURE.", 600, 278, 27, depth=3, anchor="middle", ls=9, top=HI)
     body += (f'<text x="600" y="308" class="m b" font-size="15" text-anchor="middle" letter-spacing="6" '
              f'fill="{G}" opacity=".9">AI × SECURITY  //  AUTOMATION  //  LINUX</text>')
     body += (f'<rect y="-120" width="{w}" height="120" fill="url(#scan)">'
@@ -467,13 +463,13 @@ def hero():
 
 
 SECTIONS = [
-    ("01", "SYSTEM INITIALIZATION", "boot sequence  /  whoami", "icosa", "cyan"),
-    ("02", "TECH STACK", "loaded modules", "cube", "amber"),
-    ("03", "ZAP-LABS", "web security cyber range", "icosa", "red"),
-    ("04", "CURRENT PROJECTS", "active operations", "octa", "green"),
-    ("05", "GITHUB TELEMETRY", "live signal", "icosa", "violet"),
-    ("06", "CONTRIBUTION SNAKE", "grid crawler", "cube", "pink"),
-    ("07", "NETWORK", "open channels", "tetra", "blue"),
+    ("01", "SYSTEM INITIALIZATION", "boot sequence  /  whoami", "icosa", "mint"),
+    ("02", "TECH STACK", "loaded modules", "cube", "aqua"),
+    ("03", "ZAP-LABS", "web security cyber range", "icosa", "sky"),
+    ("04", "CURRENT PROJECTS", "active operations", "octa", "blue"),
+    ("05", "GITHUB TELEMETRY", "live signal", "icosa", "indigo"),
+    ("06", "CONTRIBUTION SNAKE", "grid crawler", "cube", "violet"),
+    ("07", "NETWORK", "open channels", "tetra", "purple"),
 ]
 
 
@@ -955,12 +951,55 @@ def footer():
     body += grid_floor(600, horizon, h, rows=8)
     body += ext_text("END OF TRANSMISSION", 600, 48, 30, depth=5, ls=8, anchor="middle")
     body += (f'<text x="600" y="228" class="m b" font-size="15" text-anchor="middle" fill="{HI}" '
-             f'letter-spacing="5">{NAME.lower()}  //  {motto_spans()}<tspan class="bl" fill="{G}"> █</tspan></text>')
+             f'letter-spacing="5">{NAME.lower()}  //  break. build. secure.<tspan class="bl" fill="{G}"> █</tspan></text>')
     write("footer.svg", doc(w, h, clip(w, h, 20, body) + frame(w, h, 20), "End of transmission", defs=defs))
 
 
 # one jump button per section, in the order of SECTIONS
 NAV = ["whoami", "stack", "zaplabs", "projects", "telemetry", "snake", "network"]
+
+
+def sync_widgets(colour):
+    """Recolour what the generators don't draw: the third-party cards in README.md
+    and the graphics the workflow builds (3D contribution graph, snake)."""
+    def recolour(line, name, roles):
+        for key, base in roles.items():
+            line = re.sub(rf"(?<=[?&]){key}=[0-9A-Fa-f]{{6}}", f"{key}={tint(base, name)[1:]}", line)
+        return line
+
+    telemetry, snake, projects = colour["telemetry"], colour["snake"], colour["projects"]
+    readme = ROOT / "README.md"
+    lines = readme.read_text().split("\n")
+    for i, line in enumerate(lines):
+        if "github-readme-stats.vercel.app" in line:
+            lines[i] = recolour(line, telemetry, {"bg_color": BG, "title_color": G, "text_color": HI,
+                                                  "border_color": G})
+        elif "streak-stats.demolab.com" in line:
+            lines[i] = recolour(line, telemetry, {
+                "background": BG, "border": G, "ring": G, "fire": G, "currStreakLabel": G, "sideLabels": G,
+                "stroke": G, "currStreakNum": HI, "sideNums": HI, "dates": "#12C845"})
+        elif "img.shields.io/github" in line and "kortex-shield" in line:
+            lines[i] = recolour(line, projects, {"color": G, "labelColor": BG})
+    readme.write_text("\n".join(lines))
+
+    ramp = ["#0B2A14", "#0A5C22", "#0E8F33", "#12C845", G]
+    path = ROOT / ".github" / "profile-3d" / "matrix.json"
+    config = json.loads(path.read_text())
+    config.update(backgroundColor=tint(BG, telemetry), foregroundColor=tint(G, telemetry),
+                  strongColor=tint(HI, telemetry), weakColor=tint("#0A8F2E", telemetry),
+                  radarColor=tint(G, telemetry), contribColors=[tint(c, telemetry) for c in ramp])
+    path.write_text(json.dumps(config, indent=2) + "\n")
+
+    dark = ",".join(["#161b22"] + [tint(c, snake) for c in ramp[:4]])
+    pale, strong, deep = tint(HI, snake), tint("#12C845", snake), tint("#0E8F33", snake)
+    light = ",".join(["#ebedf0", pale, mix(pale, strong, 0.5), strong, deep])
+    path = ROOT / ".github" / "workflows" / "snake.yml"
+    text = path.read_text()
+    text = re.sub(r"(dist/github-contribution-grid-snake\.svg)\S*",
+                  lambda m: f"{m.group(1)}?color_snake={deep}&color_dots={light}", text)
+    text = re.sub(r"(dist/github-contribution-grid-snake-dark\.svg)\S*",
+                  lambda m: f"{m.group(1)}?palette=github-dark&color_snake={tint(G, snake)}&color_dots={dark}", text)
+    path.write_text(text)
 
 
 def main():
@@ -992,7 +1031,9 @@ def main():
         button("btn-portfolio", "PORTFOLIO", "window")
         button("btn-email", EMAIL, "mail", w=620, aria=f"Email {EMAIL}")
         button("btn-top", "BACK TO TOP", w=300, h=70, size=21, depth=6)
-    footer()
+    with theme(FOOTER_THEME):
+        footer()
+    sync_widgets(colour)
     total = sum(f.stat().st_size for f in OUT.glob("*.svg"))
     print(f"wrote {len(list(OUT.glob('*.svg')))} files, {total / 1024:.0f} KB")
 
